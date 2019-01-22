@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import store from "../../store/index";
 import { CHANGE_PRICE } from "../../constants/action-types";
 import { changePrice } from "../../actions";
-import Login from "../Login.js";
+import Login from "../Login";
 
 class Config extends React.Component {
     constructor(props) {
@@ -28,18 +28,18 @@ class Config extends React.Component {
     render() {
         return (
             <React.Fragment>
-            <Login />
-            <div id="Config">
-                <div className="welcomeHeadline">Host service price (in bits):</div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        <input type="text" pattern="[0-9]*" placeholder="0" onChange={(e) => this.props.changePrice(e.target.value)} />
-                    </label>
-                    <input type="submit" value="Set Price" />
-                </form>
-                <div id="price">Price currently is: {this.props.price}</div>
-                <div className="author">&copy; Rusu Traian Cristian</div>
-            </div>
+                <Login />
+                <div id="Config">
+                    <div className="welcomeHeadline">Host service price (in bits):</div>
+                    <form onSubmit={this.handleSubmit}>
+                        <label>
+                            <input type="text" pattern="[0-9]*" placeholder="0" onChange={(e) => this.props.changePrice(e.target.value)} />
+                        </label>
+                        <input type="submit" value="Set Price" />
+                    </form>
+                    <div id="price">Price currently is: {this.props.price}</div>
+                    <div className="author">&copy; Rusu Traian Cristian</div>
+                </div>
             </React.Fragment>
         );
     }
