@@ -23,5 +23,5 @@ if (window.Twitch.ext) {
     console.error(err);
   });
 } else {
-  console.error("Could not find Twitch.ext object");
+  console.error("hey muie!");
 }

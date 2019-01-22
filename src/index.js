@@ -2,8 +2,9 @@ import "babel-polyfill";
 import "./api/twitchExt";
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import store from "./store/index";
 
-// load component based on current view (viewer/config etc.)
 // uses code-splitting for efficiency
 const rootConfig = document.getElementById("root-config");
 const rootLiveConfig = document.getElementById("root-liveconfig");
@@ -14,27 +15,27 @@ const rootVideoFullscreen = document.getElementById("root-videofullscreen");
 
 if (rootPanel) {
   import("./components/PanelPage/Panel.js").then(Panel =>
-    ReactDOM.render(<Panel.default />, rootPanel)
+    ReactDOM.render(<Provider store={store}><Panel.default /></Provider>, rootPanel)
   );
 } else if (rootConfig) {
   import("./components/ConfigPage/Config.js").then(Config =>
-    ReactDOM.render(<Config.default />, rootConfig)
+    ReactDOM.render(<Provider store={store}><Config.default /></Provider>, rootConfig)
   );
 } else if (rootLiveConfig) {
-  import("./components/LiveConfigPage/LiveConfig.js").then(Config =>
-    ReactDOM.render(<Config.default />, rootLiveConfig)
+  import("./components/LiveConfigPage/LiveConfig.js").then(LiveConfig =>
+    ReactDOM.render(<Provider store={store}><LiveConfig.default /></Provider>, rootLiveConfig)
   );
 } else if (rootMobile) {
   import("./components/MobilePage/Mobile.js").then(Mobile =>
-    ReactDOM.render(<Mobile.default />, rootMobile)
+    ReactDOM.render(<Provider store={store}><Mobile.default /></Provider>, rootMobile)
   );
 } else if (rootVideoComponent) {
   import("./components/VideoComponentPage/VideoComponent.js").then(VideoComponent =>
-    ReactDOM.render(<VideoComponent.default />, rootVideoComponent)
+    ReactDOM.render(<Provider store={store}><VideoComponent.default /></Provider>, rootVideoComponent)
   );
 } else if (rootVideoFullscreen) {
   import("./components/VideoFullscreenPage/VideoFullscreen.js").then(VideoFullscreen =>
-    ReactDOM.render(<VideoFullscreen.default />, rootVideoFullscreen)
+    ReactDOM.render(<Provider store={store}><VideoFullscreen.default /></Provider>, rootVideoFullscreen)
   );
 } else {
   console.error("Unsupported Page!");

@@ -1,0 +1,51 @@
+body {
+    font-family: 'Thasadith', sans-serif;
+    background: inherit;
+}
+
+#LiveConfig {}
+
+.welcomeHeadline {
+    color: #9f9f9f;
+    width: 100%;
+    border-bottom: 1px dashed #8465bd;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    font-size: 26px;
+    line-height: 26px;
+}
+
+input[type=text] {
+    outline-style: none;
+    border: 1px solid #8465bd;
+    color: #8465bd;;
+    background: #19171c;
+    padding: 3px 5px;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 1px;
+    font-family: Arial;
+    width: 138px;
+}
+
+input[type=submit] {
+    background: #8465bd;
+    border: 1px solid #8465bd;
+    color: #19171c;
+    line-height: 22px;
+    font-size: 14px;
+    padding: 3px 0;
+    outline-style: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: Arial;
+    font-weight: bold;
+    width: 148px;
+}
+
+#price {
+    color: #71bd65;
+    padding: 10px 0;
+    font-size: 14px;
+    font-family: arial;
+}

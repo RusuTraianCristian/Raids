@@ -2,9 +2,7 @@
 // from Twitch's APIs
 async function twitchFetch(url) {
   const headers = new Headers({
-    Accept: "application/vnd.twitchtv.v5+json",
-    // TODO put your app's Client-ID in
-    "Client-ID": "YOUR_CLIENT_ID"
+    Accept: "https://id.twitch.tv"
   });
 
   const options = { method: "GET", headers: headers };
@@ -20,13 +18,13 @@ async function twitchFetch(url) {
 }
 
 async function getUserById(userId) {
-  const url = `https://api.twitch.tv/kraken/users/${userId}`;
+  const url = `https://api.twitch.tv/helix/`;
   const result = await twitchFetch(url);
   return result;
 }
 
 async function getChannelById(channelId) {
-  const url = `https://api.twitch.tv/kraken/channels/${channelId}`;
+  const url = `https://api.twitch.tv/helix/channels/${channelId}`;
   const result = await twitchFetch(url);
   return result;
 }

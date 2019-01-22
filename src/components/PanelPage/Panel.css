@@ -1,0 +1,23 @@
+body {
+    font-family: 'Thasadith', sans-serif;
+    background: inherit;
+}
+
+#Panel {}
+
+.welcomeHeadline {
+    color: #9f9f9f;
+    width: 100%;
+    border-bottom: 1px dashed #8465bd;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    font-size: 26px;
+    line-height: 26px;
+}
+
+#price {
+    color: #71bd65;
+    padding: 10px 0;
+    font-size: 14px;
+    font-family: arial;
+}
