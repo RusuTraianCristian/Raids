@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import store from "../../store/index";
 import { CHANGE_PRICE } from "../../constants/action-types";
 import { changePrice } from "../../actions";
-import Login from "../Login";
+import Login from "../Login.js";
 
 class Config extends React.Component {
     constructor(props) {
@@ -28,7 +28,7 @@ class Config extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <Login />
+                <Login price={this.props.price}/>
                 <div id="Config">
                     <div className="welcomeHeadline">Host service price (in bits):</div>
                     <form onSubmit={this.handleSubmit}>
