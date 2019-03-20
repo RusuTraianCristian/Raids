@@ -1,9 +1,121 @@
 import React from "react";
+import "./VideoComponent.css";
+import { connect } from "react-redux";
+import store from "../../store/index";
+import { CHANGE_PRICE } from "../../constants/action-types";
+import { changePrice } from "../../actions";
 
 class VideoComponent extends React.Component {
-  render() {
-    return <h1>This is the video component page!</h1>;
-  }
+    constructor(props) {
+        super(props);
+        this.state = store.getState();
+    }
+
+    componentDidMount() {
+
+        window.Twitch.ext.onContext(context => {
+
+        });
+
+        // window.Twitch.ext.actions.requestIdShare();
+
+        window.Twitch.ext.onAuthorized(auth => {
+
+        });
+
+        window.Twitch.ext.onError(e => console.error(e));
+
+        console.log(`Running ${window.Twitch.ext.version} on ${window.Twitch.ext.environment}`);
+
+        // add bits, chat and configuration service functions
+
+        window.Twitch.ext.onAuthorized(async function(auth) {
+
+            const userId = auth.userId;
+            const token = auth.token;
+
+            async function twitchFetch(url) {
+              const headers = new Headers({
+                'Client-ID': auth.clientId,
+                'Accept': "application/vnd.twitchtv.v5+json",
+                'Authorization': "Bearer " + auth.token
+              });
+
+              const options = { method: "GET", headers: headers };
+
+              try {
+                const response = await fetch(url, options);
+                const data = await response.json();
+                return data;
+              } catch (err) {
+                console.error(err);
+              }
+              return undefined;
+            }
+
+            async function getDisplay(userId) {
+                const url = `https://api.twitch.tv/helix/users?id=${userId}`;
+                const result = await twitchFetch(url);
+                return result;
+            }
+
+            const userData = await getDisplay(auth.channelId);
+            const displayName = userData.data[0].display_name;
+            const login = userData.data[0].login;
+
+            document.getElementById('authinfo').innerHTML = `Hello there, ${displayName}! Thank you for using our awesome extension. Your channel ID is: ${auth.channelId} and user's ID is ${auth.userId}`;
+        });
+
+        // Bits
+
+        // gets all Bits products
+
+        window.Twitch.ext.bits.getProducts().then(function(products) {
+            console.log(products);
+            document.getElementById('raid500').innerHTML = `${products[3].cost.amount} Bits`;
+            document.getElementById('raid1000').innerHTML = `${products[0].cost.amount} Bits`;
+            document.getElementById('raid2000').innerHTML = `${products[2].cost.amount} Bits`;
+            document.getElementById('raid5000').innerHTML = `${products[4].cost.amount} Bits`;
+            document.getElementById('raid10000').innerHTML = `${products[1].cost.amount} Bits`;
+            const mappedProducts = products.map((number) =>
+                <li>{ number }</li>
+            );
+            console.log(mappedProducts);
+        });
+
+    }
+
+    // calls a Bits product based on Sku (id arg)
+
+    buyRaid(id) {
+        window.Twitch.ext.bits.getProducts().then(function(products) {
+            console.log(products);
+            let productSku = products[id].sku;
+            Twitch.ext.bits.useBits(productSku);
+        });
+    }
+
+    render() {
+        return (
+            <React.Fragment>
+                <div id="VideoComponent">
+                    <div id="price">Stream ends in: {this.state.price}</div>
+                    <div id="authinfo"></div>
+                    <div id="raid500" onClick={this.buyRaid.bind(this, 3)}></div>
+                    <div id="raid1000" onClick={this.buyRaid.bind(this, 0)}></div>
+                    <div id="raid2000" onClick={this.buyRaid.bind(this, 2)}></div>
+                    <div id="raid5000" onClick={this.buyRaid.bind(this, 4)}></div>
+                    <div id="raid10000" onClick={this.buyRaid.bind(this, 1)}></div>
+                </div>
+            </React.Fragment>
+        );
+    }
 }
+
+// stores persistent information in localStorage whenever an action is dispatched
+
+store.subscribe(() => {
+    localStorage.setItem('reduxState', JSON.stringify(store.getState()));
+});
 
 export default VideoComponent;

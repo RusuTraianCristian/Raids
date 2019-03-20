@@ -1,51 +1,64 @@
 body {
-    font-family: 'Thasadith', sans-serif;
-    background: inherit;
+    font-family: monospace;
+    background: #19171c;
 }
 
 #LiveConfig {}
 
 .welcomeHeadline {
-    color: #9f9f9f;
+    color: #9686d5;
     width: 100%;
-    border-bottom: 1px dashed #8465bd;
-    margin-bottom: 30px;
+    border-bottom: 1px dashed #9686d5;
+    margin-bottom: 13px;
     padding-bottom: 10px;
-    font-size: 26px;
-    line-height: 26px;
+    font-size: 22px;
+    line-height: 22px;
 }
 
 input[type=text] {
     outline-style: none;
-    border: 1px solid #8465bd;
-    color: #8465bd;;
+    border: 1px solid #9686d5;
+    color: #9686d5;
     background: #19171c;
     padding: 3px 5px;
-    font-size: 16px;
+    font-size: 12px;
     line-height: 22px;
-    letter-spacing: 1px;
-    font-family: Arial;
     width: 138px;
-}
-
-input[type=submit] {
-    background: #8465bd;
-    border: 1px solid #8465bd;
-    color: #19171c;
-    line-height: 22px;
-    font-size: 14px;
-    padding: 3px 0;
-    outline-style: none;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-family: Arial;
-    font-weight: bold;
-    width: 148px;
+    font-family: monospace;
 }
 
 #price {
-    color: #71bd65;
+    color: #43cc92;
     padding: 10px 0;
     font-size: 14px;
-    font-family: arial;
+}
+
+#authinfo {
+    color: #9686d5;
+}
+
+#raid500, #raid1000, #raid2000, #raid5000, #raid10000 {
+    background: #19171c;
+    border: 1px solid #9686d5;
+    color: #9686d5;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    width: calc(50% - 6px);
+    height: 32px;
+    margin: 3px 2px;
+    text-align: center;
+    line-height: 32px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 14px;
+    font-family: Arial;
+    float: left;
+    border-radius: 2px;
+}
+
+#raid500:hover, #raid1000:hover, #raid2000:hover, #raid5000:hover, #raid10000:hover {
+    background: #2c2437;
 }

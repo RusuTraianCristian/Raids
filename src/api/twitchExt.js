@@ -6,7 +6,7 @@ if (window.Twitch.ext) {
 
     // this is just a suggestion
     // to get more info about the current user
-    const userData = await getUserById(auth.userId.substr(1));
+    const userData = await getUserById(auth.channelId);
     window.twitchUserObj = userData;
 
     // this is just a suggestion
@@ -22,6 +22,7 @@ if (window.Twitch.ext) {
   window.Twitch.ext.onError(err => {
     console.error(err);
   });
-} else {
-  console.error("hey muie!");
+}
+else {
+    console.error("Error!");
 }

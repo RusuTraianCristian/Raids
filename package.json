@@ -1,14 +1,14 @@
 {
-  "name": "twitch-extension-starter",
+  "name": "Raids",
   "version": "1.2.0",
-  "description": "This will get you started developing Twitch extensions using React!",
+  "description": "A Twitch extension & webapp.",
   "main": "src/index.js",
-  "author": "Martin Beierling <mbeierling@gmail.com>",
+  "author": "Rusu Traian Cristian <rusutraiancristian@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently \"parcel watch src/pages/config.html src/pages/live_config.html src/pages/mobile.html src/pages/panel.html src/pages/video_component.html src/pages/video_fullscreen.html -d dist --public-url ./\" \"yarn dev-server\"",
+    "start": "concurrently \"parcel watch config.html live_config.html mobile.html panel.html video_component.html video_fullscreen.html -d dist --public-url ./\" \"yarn dev-server\"",
     "dev-server": "node server.js",
-    "build": "parcel build src/pages/config.html src/pages/live_config.html src/pages/mobile.html src/pages/panel.html src/pages/video_component.html src/pages/video_fullscreen.html -d dist --no-minify --public-url ./",
+    "build": "parcel build config.html live_config.html mobile.html panel.html video_component.html video_fullscreen.html -d dist --no-minify --public-url ./",
     "zip": "cross-env bestzip dist_zip/$npm_package_version.zip dist/*",
     "package": "npm run build && npm run zip"
   },

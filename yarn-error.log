@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add redux-thump
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add Login.css
 
 PATH: 
-  C:\Users\RusuTraianCristian\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\RusuTraianCristian\bin;C:\Python27;C:\Python27\Scripts;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\nodejs;C:\Program Files (x86)\Yarn\bin;C:\Users\RusuTraianCristian\AppData\Local\atom\bin;C:\Users\RusuTraianCristian\AppData\Local\.meteor;C:\Users\RusuTraianCristian\AppData\Local\Microsoft\WindowsApps;C:\Users\RusuTraianCristian\AppData\Roaming\npm;C:\Users\RusuTraianCristian\AppData\Local\Yarn\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+  C:\Users\RUSUTR~1\AppData\Local\Temp\yarn--1551213875801-0.23216428295380842;X:\Raids\node_modules\.bin;C:\Users\RusuTraianCristian\AppData\Local\Yarn\Data\link\node_modules\.bin;X:\Raids\node_modules\.bin;C:\Users\RusuTraianCristian\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Program Files\libexec\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\Users\RusuTraianCristian\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\RusuTraianCristian\bin;C:\Python27;C:\Python27\Scripts;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files (x86)\Yarn\bin;C:\Program Files\nodejs;C:\Users\RusuTraianCristian\AppData\Local\atom\bin;C:\Users\RusuTraianCristian\AppData\Local\.meteor;C:\Users\RusuTraianCristian\AppData\Local\Microsoft\WindowsApps;C:\Users\RusuTraianCristian\AppData\Local\Yarn\bin;C:\Users\RusuTraianCristian\AppData\Roaming\npm;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
 
 Yarn version: 
   1.12.3
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: http://registry.npmjs.org/redux-thump: Not found
+  Error: https://registry.yarnpkg.com/Login.css: Not found
       at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:65003:18)
       at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:129018:22)
       at Request.emit (events.js:182:13)
@@ -46,7 +46,9 @@ npm manifest:
       "react": "^16.2.0",
       "react-dom": "^16.2.0",
       "react-redux": "^6.0.0",
-      "redux": "^4.0.1"
+      "redux": "^4.0.1",
+      "redux-devtools": "^3.5.0",
+      "redux-thunk": "^2.3.0"
     },
     "devDependencies": {
       "babel-eslint": "7.2.3",
@@ -2984,6 +2986,11 @@ Lockfile:
     version "4.17.10"
     resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
   
+  lodash@^4.2.0:
+    version "4.17.11"
+    resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
+    integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
+  
   lodash@~3.10.0, lodash@~3.10.1:
     version "3.10.1"
     resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
@@ -3917,19 +3924,19 @@ Lockfile:
     dependencies:
       asap "~2.0.3"
   
+  prop-types@^15.5.7, prop-types@^15.6.2:
+    version "15.6.2"
+    resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
+    integrity sha512-3pboPvLiWD7dkI3qf3KbUe6hKFKa52w+AE0VCqECtf+QHAKgOL37tTaNCnuX1nAAQ4ZhyP+kYVKf8rLmJ/feDQ==
+    dependencies:
+      loose-envify "^1.3.1"
+      object-assign "^4.1.1"
+  
   prop-types@^15.6.0:
     version "15.6.1"
     resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.1.tgz#36644453564255ddda391191fb3a125cbdf654ca"
     dependencies:
       fbjs "^0.8.16"
-      loose-envify "^1.3.1"
-      object-assign "^4.1.1"
-  
-  prop-types@^15.6.2:
-    version "15.6.2"
-    resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
-    integrity sha512-3pboPvLiWD7dkI3qf3KbUe6hKFKa52w+AE0VCqECtf+QHAKgOL37tTaNCnuX1nAAQ4ZhyP+kYVKf8rLmJ/feDQ==
-    dependencies:
       loose-envify "^1.3.1"
       object-assign "^4.1.1"
   
@@ -4153,6 +4160,28 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/reduce-function-call/-/reduce-function-call-1.0.2.tgz#5a200bf92e0e37751752fe45b0ab330fd4b6be99"
     dependencies:
       balanced-match "^0.4.2"
+  
+  redux-devtools-instrument@^1.9.0:
+    version "1.9.4"
+    resolved "https://registry.yarnpkg.com/redux-devtools-instrument/-/redux-devtools-instrument-1.9.4.tgz#36d2ae0f155c6a664e1393ef1203a009b3183a7e"
+    integrity sha512-jS/xyhepBmtsqAt+bIEusVAtgNTcYl2ac7DAfCDrTSX84C77D0DMjpCh45RntaVfa2bVpNkn9vKWUMQBzTKNRg==
+    dependencies:
+      lodash "^4.2.0"
+      symbol-observable "^1.0.2"
+  
+  redux-devtools@^3.5.0:
+    version "3.5.0"
+    resolved "https://registry.yarnpkg.com/redux-devtools/-/redux-devtools-3.5.0.tgz#d69ab76d4f0f8abdf6d24bcf5954d7a1aa2b6827"
+    integrity sha512-pGU8TZNvWxPaCCE432AGm6H6alQbAz80gQM5CzM3SjX9/oSNu/HPF17xFdPQJOXasqyih1Gv167kZDTRe7r0iQ==
+    dependencies:
+      lodash "^4.2.0"
+      prop-types "^15.5.7"
+      redux-devtools-instrument "^1.9.0"
+  
+  redux-thunk@^2.3.0:
+    version "2.3.0"
+    resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
+    integrity sha512-km6dclyFnmcvxhAcrQV2AkZmPQjzPDjgVlQtR0EQjxZPyJ0BnMf3in1ryuR8A2qU0HldVRfxYXbFSKlI3N7Slw==
   
   redux@^4.0.1:
     version "4.0.1"
@@ -4702,7 +4731,7 @@ Lockfile:
       unquote "~1.1.1"
       util.promisify "~1.0.0"
   
-  symbol-observable@^1.2.0:
+  symbol-observable@^1.0.2, symbol-observable@^1.2.0:
     version "1.2.0"
     resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
     integrity sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ==

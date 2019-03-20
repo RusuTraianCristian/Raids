@@ -1,0 +1,23 @@
+{
+ "Version": "2012-10-17",
+ "Statement": [
+  {
+   "Effect": "Allow",
+   "Action": [
+    "dynamodb:GetItem",
+    "dynamodb:PutItem",
+    "dynamodb:Scan"
+   ],
+   "Resource": [
+    "arn:aws:dynamodb:us-east-1:875285656979:table/Raids"
+   ],
+   "Condition": {
+    "ForAllValues:StringEquals": {
+     "dynamodb:LeadingKeys": [
+      "${graph.facebook.com:id}"
+     ]
+    }
+   }
+  }
+ ]
+}
