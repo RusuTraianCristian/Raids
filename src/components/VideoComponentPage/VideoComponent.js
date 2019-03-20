@@ -9,7 +9,7 @@ class VideoComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = store.getState();
-    }
+    } // end of constructor
 
     componentDidMount() {
 
@@ -17,7 +17,7 @@ class VideoComponent extends React.Component {
 
         });
 
-        // window.Twitch.ext.actions.requestIdShare();
+        window.Twitch.ext.actions.requestIdShare();
 
         window.Twitch.ext.onAuthorized(auth => {
 
@@ -26,8 +26,6 @@ class VideoComponent extends React.Component {
         window.Twitch.ext.onError(e => console.error(e));
 
         console.log(`Running ${window.Twitch.ext.version} on ${window.Twitch.ext.environment}`);
-
-        // add bits, chat and configuration service functions
 
         window.Twitch.ext.onAuthorized(async function(auth) {
 
@@ -72,18 +70,20 @@ class VideoComponent extends React.Component {
 
         window.Twitch.ext.bits.getProducts().then(function(products) {
             console.log(products);
+
             document.getElementById('raid500').innerHTML = `${products[3].cost.amount} Bits`;
             document.getElementById('raid1000').innerHTML = `${products[0].cost.amount} Bits`;
             document.getElementById('raid2000').innerHTML = `${products[2].cost.amount} Bits`;
             document.getElementById('raid5000').innerHTML = `${products[4].cost.amount} Bits`;
             document.getElementById('raid10000').innerHTML = `${products[1].cost.amount} Bits`;
+            
             const mappedProducts = products.map((number) =>
                 <li>{ number }</li>
             );
             console.log(mappedProducts);
-        });
+        }); // end of products list
 
-    }
+    } // end of componentDidMount
 
     // calls a Bits product based on Sku (id arg)
 
@@ -93,7 +93,7 @@ class VideoComponent extends React.Component {
             let productSku = products[id].sku;
             Twitch.ext.bits.useBits(productSku);
         });
-    }
+    } // end of use Bits function
 
     render() {
         return (
@@ -108,14 +108,16 @@ class VideoComponent extends React.Component {
                     <div id="raid10000" onClick={this.buyRaid.bind(this, 1)}></div>
                 </div>
             </React.Fragment>
-        );
-    }
-}
+        ); // end of return
+    } // end of render
+} // end of component
 
 // stores persistent information in localStorage whenever an action is dispatched
 
 store.subscribe(() => {
     localStorage.setItem('reduxState', JSON.stringify(store.getState()));
 });
+
+// exports the component
 
 export default VideoComponent;

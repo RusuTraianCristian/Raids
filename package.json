@@ -6,9 +6,9 @@
   "author": "Rusu Traian Cristian <rusutraiancristian@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently \"parcel watch config.html live_config.html mobile.html panel.html video_component.html video_fullscreen.html -d dist --public-url ./\" \"yarn dev-server\"",
+    "start": "concurrently \"parcel watch config.html live_config.html panel.html video_component.html -d dist --public-url ./\" \"yarn dev-server\"",
     "dev-server": "node server.js",
-    "build": "parcel build config.html live_config.html mobile.html panel.html video_component.html video_fullscreen.html -d dist --no-minify --public-url ./",
+    "build": "parcel build config.html live_config.html panel.html video_component.html -d dist --no-minify --public-url ./",
     "zip": "cross-env bestzip dist_zip/$npm_package_version.zip dist/*",
     "package": "npm run build && npm run zip"
   },

@@ -9,7 +9,7 @@ class LiveConfig extends React.Component {
     constructor(props) {
         super(props);
         this.state = store.getState();
-    }
+    } // end of constructor
 
     componentDidMount() {
 
@@ -25,9 +25,10 @@ class LiveConfig extends React.Component {
 
         console.log(`Running ${window.Twitch.ext.version} on ${window.Twitch.ext.environment}`);
 
-        // add bits, chat and configuration service functions
-
         window.Twitch.ext.onAuthorized(async function(auth) {
+
+            const userId = auth.userId;
+            const token = auth.token;
 
             async function twitchFetch(url) {
               const headers = new Headers({
@@ -67,18 +68,20 @@ class LiveConfig extends React.Component {
 
         window.Twitch.ext.bits.getProducts().then(function(products) {
             console.log(products);
+
             document.getElementById('raid500').innerHTML = `${products[3].cost.amount} Bits`;
             document.getElementById('raid1000').innerHTML = `${products[0].cost.amount} Bits`;
             document.getElementById('raid2000').innerHTML = `${products[2].cost.amount} Bits`;
             document.getElementById('raid5000').innerHTML = `${products[4].cost.amount} Bits`;
             document.getElementById('raid10000').innerHTML = `${products[1].cost.amount} Bits`;
+
             const mappedProducts = products.map((number) =>
                 <li>{ number }</li>
             );
             console.log(mappedProducts);
-        });
+        }); // end of products list
 
-    }
+    } // end of componentDidMount
 
     // calls a Bits product based on Sku (id arg)
 
@@ -88,13 +91,12 @@ class LiveConfig extends React.Component {
             let productSku = products[id].sku;
             Twitch.ext.bits.useBits(productSku);
         });
-    }
+    } // end of use Bits function
 
     render() {
         return (
             <React.Fragment>
                 <div id="LiveConfig">
-                    <div className="welcomeHeadline">Select raids:</div>
                     <form>
                         <label>
                             <input type="text" pattern="[0-9]*" placeholder="0" onChange={(e) => this.props.changePrice(e.target.value)} />
@@ -109,15 +111,19 @@ class LiveConfig extends React.Component {
                     <div id="raid10000" onClick={this.buyRaid.bind(this, 1)}></div>
                 </div>
             </React.Fragment>
-        );
-    }
-}
+        ); // end of return
+    } // end of render
+} // end of component
+
+// maps state to be accessible via props
 
 const mapStateToProps = (state) => {
     return {
         price: state.price
     }
 }
+
+// maps dispatch to be accessible via props
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -136,5 +142,7 @@ const mapDispatchToProps = (dispatch) => {
 store.subscribe(() => {
     localStorage.setItem('reduxState', JSON.stringify(store.getState()));
 });
+
+// exports the component and its mapped functions
 
 export default connect(mapStateToProps, mapDispatchToProps)(LiveConfig);
