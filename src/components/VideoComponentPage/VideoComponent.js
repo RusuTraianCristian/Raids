@@ -80,7 +80,6 @@ class VideoComponent extends React.Component {
             const mappedProducts = products.map((number) =>
                 <li>{ number }</li>
             );
-            console.log(mappedProducts);
         }); // end of products list
 
     } // end of componentDidMount
