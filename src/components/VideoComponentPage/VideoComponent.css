@@ -5,19 +5,6 @@ body {
 
 #VideoComponent {}
 
-input[type=text] {
-    outline-style: none;
-    border: 1px solid #8465bd;
-    color: #8465bd;
-    background: #19171c;
-    padding: 3px 5px;
-    font-size: 16px;
-    line-height: 22px;
-    letter-spacing: 1px;
-    font-family: Arial;
-    width: 138px;
-}
-
 #price {
     color: #43cc92;
     padding: 10px 0;

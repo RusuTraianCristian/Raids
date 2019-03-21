@@ -69,16 +69,15 @@ class LiveConfig extends React.Component {
         window.Twitch.ext.bits.getProducts().then(function(products) {
             console.log(products);
 
-            document.getElementById('raid500').innerHTML = `${products[3].cost.amount} Bits`;
-            document.getElementById('raid1000').innerHTML = `${products[0].cost.amount} Bits`;
-            document.getElementById('raid2000').innerHTML = `${products[2].cost.amount} Bits`;
-            document.getElementById('raid5000').innerHTML = `${products[4].cost.amount} Bits`;
-            document.getElementById('raid10000').innerHTML = `${products[1].cost.amount} Bits`;
+            document.getElementById('raid500').innerHTML = `${products[3].cost.amount} ${products[3].cost.type}`;
+            document.getElementById('raid1000').innerHTML = `${products[0].cost.amount} ${products[0].cost.type}`;
+            document.getElementById('raid2000').innerHTML = `${products[2].cost.amount} ${products[2].cost.type}`;
+            document.getElementById('raid5000').innerHTML = `${products[4].cost.amount} ${products[4].cost.type}`;
+            document.getElementById('raid10000').innerHTML = `${products[1].cost.amount} ${products[1].cost.type}`;
 
             const mappedProducts = products.map((number) =>
                 <li>{ number }</li>
             );
-            console.log(mappedProducts);
         }); // end of products list
 
     } // end of componentDidMount
