@@ -13,6 +13,20 @@ class LiveConfig extends React.Component {
 
     componentDidMount() {
 
+        // POST
+        const { price } = store.getState();
+        fetch('https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                task: price,
+                id: price
+            })
+        });
+
         window.Twitch.ext.onContext(context => {
 
         });

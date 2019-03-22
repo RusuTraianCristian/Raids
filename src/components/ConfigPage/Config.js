@@ -13,33 +13,6 @@ class Config extends React.Component {
 
     componentDidMount() {
 
-        // GET
-        fetch('https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks')
-        .then(res => res.json())
-        .then(json => {
-            const ids = json.map(item => item.Id);
-            console.log(`These are the ids: ${ids}`);
-            const tasks = json.map(item => item.Task);
-            console.log(`These are the tasks: ${tasks}`);
-            this.setState({
-                price: price
-            });
-        });
-
-        // POST
-        const { price } = store.getState();
-        fetch('https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                task: price,
-                id: price
-            })
-        });
-
         window.Twitch.ext.onContext(context => {
 
         });
@@ -56,6 +29,20 @@ class Config extends React.Component {
 
             const userId = auth.userId;
             const token = auth.token;
+
+            // POST
+            const { price } = store.getState();
+            fetch('https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: auth.channelId,
+                    task: price
+                })
+            });
 
             async function twitchFetch(url) {
               const headers = new Headers({
@@ -120,18 +107,6 @@ class Config extends React.Component {
     } // end of use Bits function
 
     render() {
-
-        // POST
-        const { price } = store.getState();
-        fetch('https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ task: price })
-        })
-
         return (
             <React.Fragment>
                 <div id="Config">

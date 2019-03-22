@@ -1,16 +1,18 @@
 const AWS = require('aws-sdk');
-const uuid = require(uuid);
 const documentClient = new AWS.DynamoDB.DocumentClient();
 
-export.addTask = function(event, context, callback) {
+exports.addTask = function(event, context, callback) {
     var params = {
-        Item: {
-            "Id": uuid.v1(),
-            "Task": event.task
+        TableName: "Raids",
+        Key: {
+            "Id": event.id
         },
-        TableName: process.env.TABLE_NAME
+        Item: {
+            "Id": event.id,
+            "Task": event.task
+        }
     };
-    documentClient.put(params, function(err, data) {
+    documentClient.update(params, function(err, data) {
         callback(err, data);
     });
-}
+};
