@@ -1,7 +1,7 @@
 const AWS = require('aws-sdk');
 const documentClient = new AWS.DynamoDB.DocumentClient();
 
-export.getAllTasks = function(event, context, callback) {
+exports.getAllTasks = function(event, context, callback) {
     const params = {
         TableName: process.env.TABLE_NAME
     };

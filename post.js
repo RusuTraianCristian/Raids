@@ -5,12 +5,14 @@ exports.addTask = function(event, context, callback) {
     var params = {
         TableName: "Raids",
         Key: {
-            "Id": event.id
-        },
-        Item: {
             "Id": event.id,
-            "Task": event.task
-        }
+            "Task": event.id
+        },
+        UpdateExpression: "SET Bits = :bits",
+        ExpressionAttributeValues: {
+            ":bits": event.task
+        },
+        ReturnValues: "UPDATED_NEW"
     };
     documentClient.update(params, function(err, data) {
         callback(err, data);

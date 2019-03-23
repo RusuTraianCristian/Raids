@@ -13,20 +13,6 @@ class LiveConfig extends React.Component {
 
     componentDidMount() {
 
-        // POST
-        const { price } = store.getState();
-        fetch('https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                task: price,
-                id: price
-            })
-        });
-
         window.Twitch.ext.onContext(context => {
 
         });
@@ -43,6 +29,20 @@ class LiveConfig extends React.Component {
 
             const userId = auth.userId;
             const token = auth.token;
+
+            // POST
+            const { price } = store.getState();
+            fetch('https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: auth.channelId,
+                    task: price
+                })
+            });
 
             async function twitchFetch(url) {
               const headers = new Headers({
@@ -117,11 +117,13 @@ class LiveConfig extends React.Component {
                     </form>
                     <div id="price">Stream ends in: {this.state.price}</div>
                     <div id="authinfo"></div>
-                    <div id="raid500" onClick={this.buyRaid.bind(this, 3)}></div>
-                    <div id="raid1000" onClick={this.buyRaid.bind(this, 0)}></div>
-                    <div id="raid2000" onClick={this.buyRaid.bind(this, 2)}></div>
-                    <div id="raid5000" onClick={this.buyRaid.bind(this, 4)}></div>
-                    <div id="raid10000" onClick={this.buyRaid.bind(this, 1)}></div>
+                    <form onChange={(e) => this.props.changePrice(e.target.value)} >
+                        <input type="radio" id="raid500" name="raid" value="500" onClick={this.buyRaid.bind(this, 3)} />
+                        <input type="radio" id="raid1000" name="raid" value="1000" onClick={this.buyRaid.bind(this, 0)} />
+                        <input type="radio" id="raid2000" name="raid" value="2000" onClick={this.buyRaid.bind(this, 2)} />
+                        <input type="radio" id="raid5000" name="raid" value="5000" onClick={this.buyRaid.bind(this, 4)} />
+                        <input type="radio" id="raid10000" name="raid" value="10000" onClick={this.buyRaid.bind(this, 1)} />
+                    </form>
                 </div>
             </React.Fragment>
         ); // end of return
