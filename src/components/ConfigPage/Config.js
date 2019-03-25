@@ -117,13 +117,6 @@ class Config extends React.Component {
                     </form>
                     <div id="price">Stream ends in: {this.state.price}</div>
                     <div id="authinfo"></div>
-                    <form onChange={(e) => this.props.changePrice(e.target.value)} >
-                        <input type="radio" id="raid500" name="raid" value="500" onClick={this.buyRaid.bind(this, 3)} />
-                        <input type="radio" id="raid1000" name="raid" value="1000" onClick={this.buyRaid.bind(this, 0)} />
-                        <input type="radio" id="raid2000" name="raid" value="2000" onClick={this.buyRaid.bind(this, 2)} />
-                        <input type="radio" id="raid5000" name="raid" value="5000" onClick={this.buyRaid.bind(this, 4)} />
-                        <input type="radio" id="raid10000" name="raid" value="10000" onClick={this.buyRaid.bind(this, 1)} />
-                    </form>
                 </div>
             </React.Fragment>
         ); // end of return

@@ -33,12 +33,16 @@ class VideoComponent extends React.Component {
             const token = auth.token;
 
             // GET
-            fetch('https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks')
+            const url = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks?Id=${auth.channelId}&Task=${auth.channelId}`;
+            fetch(url, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
             .then(res => res.json())
-            .then(json => {
-                const ids = json.map(item => item.Id);
-                const tasks = json.map(item => item.Task);
-            });
+            .then(data => console.log(data.Bits))
+            .catch(error => console.error(error));
 
             async function twitchFetch(url) {
               const headers = new Headers({

@@ -33,15 +33,16 @@ class Panel extends React.Component {
             const token = auth.token;
 
             // GET
-            fetch('https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks')
+            const url = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks?Id=${auth.channelId}&Task=${auth.channelId}`;
+            fetch(url, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
             .then(res => res.json())
-            .then(json => {
-                json.forEach(item => {
-                    if(item.Id === auth.channelId) {
-                        console.log(`the channel is: ${item.Id} and the price is: ${item.Bits}`);
-                    }
-                });
-            });
+            .then(data => console.log(data.Bits))
+            .catch(error => console.error(error));
 
             async function twitchFetch(url) {
               const headers = new Headers({
