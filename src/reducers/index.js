@@ -2,8 +2,7 @@ import { CHANGE_PRICE } from "../constants/action-types";
 import { CHANGE_CHANNEL } from "../constants/action-types";
 
 const initialState = {
-    price: "0",
-    channel: "sbdasdadsaSUGEPULA"
+    price: "0"
 };
 
 function reducer (state = initialState, action) {

@@ -15,7 +15,7 @@ body {
     color: #9686d5;
 }
 
-#raid500, #raid1000, #raid2000, #raid5000, #raid10000 {
+#raid {
     background: #19171c;
     border: 1px solid #9686d5;
     color: #9686d5;
@@ -37,6 +37,6 @@ body {
     border-radius: 2px;
 }
 
-#raid500:hover, #raid1000:hover, #raid2000:hover, #raid5000:hover, #raid10000:hover {
+#raid:hover {
     background: #2c2437;
 }
