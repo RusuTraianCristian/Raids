@@ -40,3 +40,7 @@ body {
 #raid:hover {
     background: #2c2437;
 }
+
+.tw-icon__svg {
+    fill: #9686d5;
+}
