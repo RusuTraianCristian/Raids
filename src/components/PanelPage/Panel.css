@@ -16,9 +16,11 @@ body {
 }
 
 #raid {
-    background: #19171c;
+    background: #9686d5;
     border: 1px solid #9686d5;
-    color: #9686d5;
+    color: #19171c;
+    font-weight: 700;
+    letter-spacing: 1px;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;

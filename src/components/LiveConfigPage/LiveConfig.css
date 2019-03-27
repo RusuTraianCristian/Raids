@@ -26,29 +26,3 @@ input[type=text] {
 #authinfo {
     color: #9686d5;
 }
-
-#raid {
-    background: #19171c;
-    border: 1px solid #9686d5;
-    color: #9686d5;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    width: calc(50% - 6px);
-    height: 32px;
-    margin: 3px 2px;
-    text-align: center;
-    line-height: 32px;
-    cursor: pointer;
-    user-select: none;
-    font-size: 14px;
-    font-family: Arial;
-    float: left;
-    border-radius: 2px;
-}
-
-#raid:hover {
-    background: #2c2437;
-}

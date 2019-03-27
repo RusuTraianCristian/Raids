@@ -3,13 +3,17 @@ const documentClient = new AWS.DynamoDB.DocumentClient();
 
 exports.getAllTasks = function(event, context, callback) {
     const params = {
-        TableName: process.env.TABLE_NAME
+        TableName: "Raids",
+        Key: {
+            "Id": event.Id,
+            "Task": event.Task
+        }
     };
-    documentClient.scan(params, function(err, data) {
+    documentClient.get(params, function(err, data) {
         if(err) {
             callback(err, null);
         } else {
-            callback(null, data.Items);
+            callback(null, data.Item);
         }
     });
 }

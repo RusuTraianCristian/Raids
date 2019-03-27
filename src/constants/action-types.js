@@ -1,2 +1,1 @@
 export const CHANGE_PRICE = "CHANGE_PRICE";
-export const CHANGE_CHANNEL = "CHANGE_CHANNEL";

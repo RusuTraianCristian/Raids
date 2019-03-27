@@ -16,9 +16,6 @@ class Config extends React.Component {
 
         window.Twitch.ext.onAuthorized(async auth => {
 
-            const userId = auth.userId;
-            const token = auth.token;
-
             async function twitchFetch(url) {
               const headers = new Headers({
                 'Client-ID': auth.clientId,
@@ -46,35 +43,11 @@ class Config extends React.Component {
 
             const userData = await getDisplay(auth.channelId);
             const displayName = userData.data[0].display_name;
-            const login = userData.data[0].login;
 
-            document.getElementById('authinfo').innerHTML = `Hello there, ${displayName}! Thank you for using our awesome extension. Your channel ID is: ${auth.channelId}`;
+            document.getElementById('authinfo').innerHTML = `Hello there, ${displayName}!`;
         });
-
-        // Bits
-
-        // gets all Bits products
-
-        window.Twitch.ext.bits.getProducts().then(function(products) {
-            console.log(products);
-
-            document.getElementById('raid').innerHTML = `${products[3].cost.amount} ${products[3].cost.type}`;
-
-            const mappedProducts = products.map((number) =>
-                <li>{ number }</li>
-            );
-        }); // end of products list
 
     } // end of componentDidMount
-
-    // calls a Bits product based on Sku (id arg)
-
-    buyRaid(id) {
-        window.Twitch.ext.bits.getProducts().then(function(products) {
-            let productSku = products[id].sku;
-            Twitch.ext.bits.useBits(productSku);
-        });
-    } // end of use Bits function
 
     post() {
         window.Twitch.ext.onAuthorized(async auth => {
@@ -94,19 +67,19 @@ class Config extends React.Component {
                 });
             }, 2000);
         });
-    }
+    } // END OF POST
 
     render() {
         return (
             <React.Fragment>
                 <div id="Config">
+                    <div id="authinfo"></div>
                     <form>
                         <label>
                             <input type="text" pattern="[0-9]*" placeholder="0" onChange={(e) => {this.props.changePrice(e.target.value); this.post()}} />
                         </label>
                     </form>
                     <div id="price">Bits for raid: {this.state.price}</div>
-                    <div id="authinfo"></div>
                 </div>
             </React.Fragment>
         ); // end of return
