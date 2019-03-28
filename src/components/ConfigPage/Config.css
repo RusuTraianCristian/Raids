@@ -3,8 +3,6 @@ body {
     background: #19171c;
 }
 
-#Config {}
-
 input[type=text] {
     outline-style: none;
     border: 1px solid #9686d5;

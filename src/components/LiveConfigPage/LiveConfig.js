@@ -72,7 +72,6 @@ class LiveConfig extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div id="LiveConfig">
                     <div id="authinfo"></div>
                     <form>
                         <label>
@@ -80,7 +79,6 @@ class LiveConfig extends React.Component {
                         </label>
                     </form>
                     <div id="price">Bits for raid: {this.state.price}</div>
-                </div>
             </React.Fragment>
         ); // end of return
     } // end of render

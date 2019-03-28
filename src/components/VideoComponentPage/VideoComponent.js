@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import store from "../../store/index";
 import { CHANGE_PRICE } from "../../constants/action-types";
 import { changePrice } from "../../actions";
+import Products from '../Products';
 
 class VideoComponent extends React.Component {
     constructor(props) {
@@ -64,36 +65,15 @@ class VideoComponent extends React.Component {
 
             document.getElementById('authinfo').innerHTML = `Hello, you are on ${displayName}'s channel! Your user ID is ${auth.userId}`;
         });
-
-        // gets all Bits products
-
-        window.Twitch.ext.bits.getProducts().then(function(products) {
-
-            document.getElementById('raid').innerHTML = `${products[3].cost.amount} ${products[3].cost.type}`;
-
-            const mappedProducts = products.map((number) =>
-                <li>{ number }</li>
-            );
-        }); // end of products list
-
     } // end of componentDidMount
-
-    buyRaid(id) {
-        window.Twitch.ext.bits.getProducts().then(function(products) {
-            let productSku = products[id].sku;
-            Twitch.ext.bits.useBits(productSku);
-        });
-    } // end of use Bits function
 
     render() {
         return (
             <React.Fragment>
-                <div id="VideoComponent">
                     <div id="price">Bits for raid: {this.state.price}</div>
                     <div id="authinfo"></div>
-                    <div id="raid" onClick={this.buyRaid.bind(this, 3)}></div>
                     <svg className="tw-icon__svg" width="20px" height="20px" version="1.1" viewBox="0 0 20 20" x="0px" y="0px"><path d="M9.592 9.081L3 11.802l6.122-9.336A1.05 1.05 0 0 1 10 2c.357 0 .688.176.878.466L17 11.802l-6.592-2.72a1.077 1.077 0 0 0-.816 0zM10 11l6 2.638-5.407 4.16a.973.973 0 0 1-1.186 0L4 13.638 10 11z" fillRule="evenodd"></path></svg>
-                </div>
+                    <Products />
             </React.Fragment>
         ); // end of return
     } // end of render
