@@ -3,36 +3,41 @@ import React from 'react';
 class Products extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            options: []
+        };
     }
 
     componentDidMount() {
-        // start of Bits
-        window.Twitch.ext.bits.getProducts().then(function(products) {
-            const newArr = products.map(item => {
+        window.Twitch.ext.bits.getProducts().then(products => {
+            let newArr = products.map(item => {
                 return item.cost.amount;
             });
             newArr.sort((a, b) => a - b);
-            newArr.forEach(item => {
-                document.getElementById("options").innerHTML += '<div id="raid">' + item + '</div>';
+            return newArr;
+        }).then((newArr) => {
+            this.setState({
+                options: [...newArr]
             });
-        }); // end of Bits
+        });
     }
 
-    buyRaid(id) {
+    buyRaid(e) {
         window.Twitch.ext.bits.getProducts().then(function(products) {
-            let productSku = products[id].sku;
-            Twitch.ext.bits.useBits(productSku);
+            Twitch.ext.bits.useBits(`raid${e}`);
         });
-    } // end of use Bits function
+    }
 
     render() {
         return (
             <React.Fragment>
-                <div id="options"></div>
-                <div id="raid" onClick={this.buyRaid.bind(this, 3)}></div>
+                <div id="options">{this.state.options.map(item => (<div id="raid" key={item} onClick={this.buyRaid.bind(this, item)}>{item}</div>))}</div>
             </React.Fragment>
         );
     }
 }
 
 export default Products;
+
+// Use a map function to render that products array and make a component which will be rendered instead of that document.getElementById....
+// and to that component, you can pass props to it and in the component you assign onClick function to some props
