@@ -38,6 +38,3 @@ class Products extends React.Component {
 }
 
 export default Products;
-
-// Use a map function to render that products array and make a component which will be rendered instead of that document.getElementById....
-// and to that component, you can pass props to it and in the component you assign onClick function to some props
