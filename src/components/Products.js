@@ -23,7 +23,7 @@ class Products extends React.Component {
     }
 
     buyRaid(e) {
-        window.Twitch.ext.bits.getProducts().then(function(products) {
+        window.Twitch.ext.bits.getProducts().then(products => {
             Twitch.ext.bits.useBits(`raid${e}`);
         });
     }
