@@ -1,2 +1,1 @@
-# Raids
-Twitch Extension &amp; Web Application
+Raids Twitch Extension

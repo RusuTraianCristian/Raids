@@ -1,0 +1,26 @@
+body {
+    font-family: monospace;
+    background: #19171c;
+}
+
+input[type=text] {
+    outline-style: none;
+    border: 1px solid #9686d5;
+    color: #9686d5;
+    background: #19171c;
+    padding: 3px 5px;
+    font-size: 12px;
+    line-height: 22px;
+    width: 138px;
+    font-family: monospace;
+}
+
+#price {
+    color: #43cc92;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+#authinfo {
+    color: #9686d5;
+}
