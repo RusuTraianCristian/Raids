@@ -61,7 +61,9 @@ class Config extends React.Component {
             const userData = await getDisplay(auth.channelId);
             const displayName = userData.data[0].display_name;
 
-            document.getElementById('authinfo').innerHTML = `Hello there, ${displayName}!`;
+            this.setState({
+                displayName: displayName
+            });
         });
 
     } // end of componentDidMount
@@ -89,13 +91,13 @@ class Config extends React.Component {
     render() {
         return (
             <React.Fragment>
-                    <div id="authinfo"></div>
+                    <div id="authinfo">{this.state.displayName}</div>
+                    <div id="price">Bits required: {this.state.price}. Bits raised: {this.state.bitsRaised}.</div>
                     <form>
                         <label>
                             <input type="text" pattern="[0-9]*" placeholder="0" onChange={(e) => {this.props.changePrice(e.target.value); this.post()}} />
                         </label>
                     </form>
-                    <div id="price">Bits for raid: {this.state.price} Currently there are {this.state.bitsRaised} bits raised.</div>
             </React.Fragment>
         ); // end of return
     } // end of render
@@ -118,7 +120,6 @@ const mapDispatchToProps = (dispatch) => {
                 type: "CHANGE_PRICE",
                 payload: value
             });
-            document.getElementById('price').innerHTML = 'Bits for raid: ' + store.getState().price;
         }
     }
 }
