@@ -23,4 +23,6 @@ input[type=text] {
 
 #authinfo {
     color: #9686d5;
+    background: #0f0e11;
+    padding: 10px;
 }

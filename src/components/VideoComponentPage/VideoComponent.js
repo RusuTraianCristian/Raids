@@ -80,17 +80,18 @@ class VideoComponent extends React.Component {
             const userData = await getDisplay(auth.channelId);
             const displayName = userData.data[0].display_name;
 
-            document.getElementById('authinfo').innerHTML = `Hello, you are on ${displayName}'s channel!`;
+            this.setState({
+                displayName: displayName
+            });
         });
     } // end of componentDidMount
 
     render() {
         return (
             <React.Fragment>
-                    <div id="price">Bits for raid: {this.state.price} Currently there are {this.state.bitsRaised} bits raised.</div>
-                    <div id="authinfo"></div>
-                    <svg className="tw-icon__svg" width="20px" height="20px" version="1.1" viewBox="0 0 20 20" x="0px" y="0px"><path d="M9.592 9.081L3 11.802l6.122-9.336A1.05 1.05 0 0 1 10 2c.357 0 .688.176.878.466L17 11.802l-6.592-2.72a1.077 1.077 0 0 0-.816 0zM10 11l6 2.638-5.407 4.16a.973.973 0 0 1-1.186 0L4 13.638 10 11z" fillRule="evenodd"></path></svg>
-                    <Products />
+                <div id="authinfo">{this.state.displayName}</div>
+                <div id="price">Bits required: {this.state.price}. Bits raised: {this.state.bitsRaised}.</div>
+                <Products />
             </React.Fragment>
         ); // end of return
     } // end of render
