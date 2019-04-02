@@ -16,6 +16,23 @@ class LiveConfig extends React.Component {
 
         window.Twitch.ext.onAuthorized(async auth => {
 
+            // GET BITSRAISED
+            const url2 = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/bitsraised?Id=${auth.channelId}&Task=${auth.channelId}`;
+            fetch(url2, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                this.setState({
+                    bitsRaised: data.BitsRaised
+                });
+            })
+            .catch(error => console.error(error));
+            // END OF GET BITS RAISED
+
             async function twitchFetch(url) {
               const headers = new Headers({
                 'Client-ID': auth.clientId,
@@ -78,7 +95,7 @@ class LiveConfig extends React.Component {
                             <input type="text" pattern="[0-9]*" placeholder="0" onChange={(e) => {this.props.changePrice(e.target.value); this.post()}} />
                         </label>
                     </form>
-                    <div id="price">Bits for raid: {this.state.price}</div>
+                    <div id="price">Bits for raid: {this.state.price} Currently there are {this.state.bitsRaised} bits raised.</div>
             </React.Fragment>
         ); // end of return
     } // end of render
