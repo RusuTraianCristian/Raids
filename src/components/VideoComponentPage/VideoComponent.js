@@ -14,27 +14,7 @@ class VideoComponent extends React.Component {
 
     componentDidMount() {
 
-        window.Twitch.ext.actions.requestIdShare();
-
         window.Twitch.ext.onAuthorized(async auth => {
-
-            // GET BITSRAISED
-            const url2 = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/bitsraised?Id=${auth.channelId}&Task=${auth.channelId}`;
-            fetch(url2, {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(res => res.json())
-            .then(data => {
-                this.setState({
-                    bitsRaised: data.BitsRaised
-                });
-            })
-            .catch(error => console.error(error));
-            // END OF GET BITS RAISED
-
             // GET
             const url = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks?Id=${auth.channelId}&Task=${auth.channelId}`;
             fetch(url, {
@@ -46,11 +26,12 @@ class VideoComponent extends React.Component {
             .then(res => res.json())
             .then(data => {
                 this.setState({
-                    price: data.Bits
+                    price: data.Bits,
+                    bitsRaised: data.BitsRaised
                 });
             })
             .catch(error => console.error(error));
-            // END OF GET
+            // END of GET
 
             async function twitchFetch(url) {
               const headers = new Headers({
