@@ -25,11 +25,12 @@ class Products extends React.Component {
     buyRaid(e) {
         window.Twitch.ext.bits.getProducts().then(products => {
             Twitch.ext.bits.useBits(`raid${e}`);
+            // START of POST
             window.Twitch.ext.bits.onTransactionComplete(TransactionObject => {
                 const setBitsRaised = TransactionObject.product.cost.amount;
-                // POST
+                const bitsRaisedUrl = 'https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/bitsraised';
                 window.Twitch.ext.onAuthorized(async auth => {
-                    fetch('https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/bitsraised', {
+                    fetch(bitsRaisedUrl, {
                         method: 'POST',
                         headers: {
                             'Accept': 'application/json',
@@ -40,8 +41,9 @@ class Products extends React.Component {
                             setBitsRaised: setBitsRaised
                         })
                     });
-                }); // END of POST
+                });
             });
+            // END of POST
         });
     }
 
