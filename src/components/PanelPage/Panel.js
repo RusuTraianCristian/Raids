@@ -71,7 +71,7 @@ class Panel extends React.Component {
         return (
             <React.Fragment>
                 <div id="authinfo">{this.state.displayName}</div>
-                <div id="price">Bits required: {this.state.price}. Bits raised: {this.state.bitsRaised}.</div>
+                <div id="price">Bits raised: {this.state.bitsRaised}. Bits required: {this.state.price}.</div>
                 <Products />
             </React.Fragment>
         ); // end of return

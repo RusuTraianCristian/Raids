@@ -8,11 +8,12 @@ input[type=text] {
     border: 1px solid #9686d5;
     color: #9686d5;
     background: #19171c;
-    padding: 3px 5px;
-    font-size: 12px;
-    line-height: 22px;
-    width: 138px;
+    padding: 6px 5px;
+    font-size: 14px;
+    line-height: 20px;
+    width: calc(100% - 10px);
     font-family: monospace;
+    text-align: right;
 }
 
 #price {

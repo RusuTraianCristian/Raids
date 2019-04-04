@@ -92,7 +92,7 @@ class LiveConfig extends React.Component {
         return (
             <React.Fragment>
                     <div id="authinfo">{this.state.displayName}</div>
-                    <div id="price">Bits required: {this.state.price}. Bits raised: {this.state.bitsRaised}.</div>
+                    <div id="price">Bits raised: {this.state.bitsRaised}. Bits required: {this.state.price}.</div>
                     <form>
                         <label>
                             <input type="text" pattern="[0-9]*" placeholder="0" onChange={(e) => {this.props.changePrice(e.target.value); this.post()}} />
