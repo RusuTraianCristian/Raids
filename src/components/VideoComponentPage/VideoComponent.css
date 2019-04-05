@@ -5,8 +5,12 @@ body {
 
 #price {
     color: #43cc92;
-    padding: 10px 0;
+    border: 1px solid #43cc92;
+    border-radius: 3px;
+    padding: 10px;
+    margin: 10px 0;
     font-size: 14px;
+    line-height: 20px;
 }
 
 #authinfo {
@@ -24,9 +28,9 @@ body {
     -o-transition: all 0.3s ease-in-out;
     -ms-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-    width: calc(100% / 3 - 10px);
+    width: calc(100% / 4 - 8px);
     height: 24px;
-    margin: 4px 4px;
+    margin: 3px 3px;
     text-align: center;
     line-height: 24px;
     cursor: pointer;
@@ -39,4 +43,5 @@ body {
 
 #raid:hover {
     background: #9686d5;
+    background: linear-gradient(315deg, #9686d5 0%, #6d5dac 100%);
 }
