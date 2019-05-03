@@ -4,7 +4,8 @@ class Products extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            options: []
+            options: [],
+            visibility: true
         };
     }
 
