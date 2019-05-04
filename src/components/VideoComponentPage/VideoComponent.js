@@ -67,12 +67,20 @@ class VideoComponent extends React.Component {
         });
     } // end of componentDidMount
 
+    reveal = () => {
+        this.setState({
+            isVisible: true,
+            isHidden: true
+        });
+    }
+
     render() {
         return (
             <React.Fragment>
                 <div id="authinfo">{this.state.displayName}</div>
                 <div id="price">Bits raised: {this.state.bitsRaised}. Bits required: {this.state.price}.</div>
-                <Products />
+                { !this.state.isHidden && <button id="reveal" onClick={this.reveal}>reveal</button> }
+                { this.state.isVisible && <Products /> }
             </React.Fragment>
         ); // end of return
     } // end of render
