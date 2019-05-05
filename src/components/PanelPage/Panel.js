@@ -79,7 +79,7 @@ class Panel extends React.Component {
             <React.Fragment>
                 <div id="authinfo">{this.state.displayName}</div>
                 <div id="price">Bits raised: {this.state.bitsRaised}. Bits required: {this.state.price}.</div>
-                { !this.state.isHidden && <button id="reveal" onClick={this.reveal}>reveal</button> }
+                { !this.state.isHidden && <button id="reveal" onClick={this.reveal}>Contribute</button> }
                 { this.state.isVisible && <Products /> }
             </React.Fragment>
         ); // end of return
