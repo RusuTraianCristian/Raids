@@ -69,8 +69,8 @@ class VideoComponent extends React.Component {
 
     reveal = () => {
         this.setState({
-            isVisible: true,
-            isHidden: true
+            isHidden: true,
+            isVisible: true
         });
     }
 
