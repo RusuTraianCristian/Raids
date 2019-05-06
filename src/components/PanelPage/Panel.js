@@ -69,8 +69,8 @@ class Panel extends React.Component {
 
     reveal = () => {
         this.setState({
-            isVisible: true,
-            isHidden: true
+            isHidden: true,
+            isVisible: true
         });
     }
 
@@ -78,7 +78,10 @@ class Panel extends React.Component {
         return (
             <React.Fragment>
                 <div id="authinfo">{this.state.displayName}</div>
-                <div id="price">Bits raised: {this.state.bitsRaised}. Bits required: {this.state.price}.</div>
+                <div id="price">Bits raised: {this.state.bitsRaised}. Bits required: {this.state.price}.
+                { this.state.bitsRaised / this.state.price * 100 + "%" }
+                </div>
+
                 { !this.state.isHidden && <button id="reveal" onClick={this.reveal}>Contribute</button> }
                 { this.state.isVisible && <Products /> }
             </React.Fragment>
