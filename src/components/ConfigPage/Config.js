@@ -109,7 +109,9 @@ class Config extends React.Component {
                 <div id="price">{ Math.floor(this.state.bitsRaised / this.state.price * 100) + "%" }</div>
                 <form>
                     <label>
+                        <span>Bits required for raid:</span>
                         <input type="text" pattern="[0-9]*" placeholder={this.state.price} onChange={(e) => {this.props.changePrice(e.target.value); this.realtime(e.target.value)}} />
+                        <span>Raid target channel:</span>
                         <input type="text" placeholder={this.state.target} onChange={(e) => {this.props.changeTarget(e.target.value); this.myTarget(e.target.value)}} />
                     </label>
                 </form>
