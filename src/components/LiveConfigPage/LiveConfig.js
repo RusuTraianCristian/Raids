@@ -9,7 +9,6 @@ class LiveConfig extends React.Component {
     constructor(props) {
         super(props);
         this.state = store.getState();
-        this.post = this.post.bind(this);
     } // end of constructor
 
     componentDidMount() {
@@ -17,8 +16,8 @@ class LiveConfig extends React.Component {
         window.Twitch.ext.onAuthorized(async auth => {
 
             // GET BITSRAISED
-            const url2 = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/bitsraised?Id=${auth.channelId}&Task=${auth.channelId}`;
-            fetch(url2, {
+            const getURL = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/bitsraised?Id=${auth.channelId}&Task=${auth.channelId}`;
+            fetch(getURL, {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -73,7 +72,8 @@ class LiveConfig extends React.Component {
             setTimeout(() => {
                 // POST
                 const { price } = store.getState();
-                fetch('https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks', {
+                const postURL = 'https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks';
+                fetch(postURL, {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
