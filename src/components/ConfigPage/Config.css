@@ -27,3 +27,19 @@ input[type=text] {
     background: #0f0e11;
     padding: 10px;
 }
+
+#submit {
+    width: 50%;
+    height: 44px;
+    background: #43cc92;
+    color: #fff;
+    font-size: 20px;
+    outline-style: none;
+    border-style: none;
+    user-select: none;
+    cursor: pointer;
+    margin: 30px 0;
+    font-family: monospace;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}

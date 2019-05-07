@@ -94,6 +94,7 @@ class LiveConfig extends React.Component {
                 <div id="authinfo">{this.state.displayName}</div>
                 <div id="price">bits raised: {this.state.bitsRaised}</div>
                 <div id="price">bits required: {this.state.price}</div>
+                <div id="price">{ Math.floor(this.state.bitsRaised / this.state.price * 100) + "%" }</div>
                 <form>
                     <label>
                         <input type="text" pattern="[0-9]*" placeholder="0" onChange={(e) => {this.props.changePrice(e.target.value); this.post()}} />
