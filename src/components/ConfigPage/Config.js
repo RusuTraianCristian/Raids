@@ -27,7 +27,9 @@ class Config extends React.Component {
             .then(res => res.json())
             .then(data => {
                 this.setState({
-                    bitsRaised: data.BitsRaised
+                    price: data.Bits,
+                    bitsRaised: data.BitsRaised,
+                    target: data.RaidTarget
                 });
             })
             .catch(error => console.error(error));
