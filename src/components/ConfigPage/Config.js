@@ -68,9 +68,8 @@ class Config extends React.Component {
 
     } // end of componentDidMount
 
-    post() {
+    post = () => {
         window.Twitch.ext.onAuthorized(async auth => {
-            setTimeout(() => {
                 // POST
                 const { price } = store.getState();
                 const postURL = 'https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks';
@@ -85,21 +84,26 @@ class Config extends React.Component {
                         task: price
                     })
                 });
-            }, 2000);
         });
     } // END OF POST
-
+    realtime = (e) => {
+        this.setState({
+            price: e
+        });
+    }
     render() {
         return (
             <React.Fragment>
                 <div id="authinfo">{this.state.displayName}</div>
                 <div id="price">bits raised: {this.state.bitsRaised}</div>
                 <div id="price">bits required: {this.state.price}</div>
+                <div id="price">{ Math.floor(this.state.bitsRaised / this.state.price * 100) + "%" }</div>
                 <form>
                     <label>
-                        <input type="text" pattern="[0-9]*" placeholder="0" onChange={(e) => {this.props.changePrice(e.target.value); this.post()}} />
+                        <input type="text" pattern="[0-9]*" placeholder={this.state.price} onChange={(e) => {this.props.changePrice(e.target.value); this.realtime(e.target.value)}} />
                     </label>
                 </form>
+                <button id="submit" onClick={this.post}>submit</button>
             </React.Fragment>
         ); // end of return
     } // end of render

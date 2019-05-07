@@ -78,7 +78,9 @@ class VideoComponent extends React.Component {
         return (
             <React.Fragment>
                 <div id="authinfo">{this.state.displayName}</div>
-                <div id="price">Bits raised: {this.state.bitsRaised}. Bits required: {this.state.price}.</div>
+                <div id="price">bits raised: {this.state.bitsRaised}</div>
+                <div id="price">bits required: {this.state.price}</div>
+                <div id="price">{ Math.floor(this.state.bitsRaised / this.state.price * 100) + "%" }</div>
                 { !this.state.isHidden && <button id="reveal" onClick={this.reveal}>Contribute</button> }
                 { this.state.isVisible && <Products /> }
             </React.Fragment>
