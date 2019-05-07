@@ -72,6 +72,7 @@ class Config extends React.Component {
         window.Twitch.ext.onAuthorized(async auth => {
                 // POST
                 const { price } = store.getState();
+                const { target } = store.getState();
                 const postURL = 'https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks';
                 fetch(postURL, {
                     method: 'POST',
@@ -81,7 +82,8 @@ class Config extends React.Component {
                     },
                     body: JSON.stringify({
                         id: auth.channelId,
-                        task: price
+                        task: price,
+                        raidTarget: target
                     })
                 });
         });
@@ -91,16 +93,22 @@ class Config extends React.Component {
             price: e
         });
     }
+    myTarget = (e) => {
+        this.setState({
+            target: e
+        });
+    }
     render() {
         return (
             <React.Fragment>
-                <div id="authinfo">{this.state.displayName}</div>
+                <div id="authinfo">{this.state.displayName} will raid: {this.state.target}</div>
                 <div id="price">bits raised: {this.state.bitsRaised}</div>
                 <div id="price">bits required: {this.state.price}</div>
                 <div id="price">{ Math.floor(this.state.bitsRaised / this.state.price * 100) + "%" }</div>
                 <form>
                     <label>
                         <input type="text" pattern="[0-9]*" placeholder={this.state.price} onChange={(e) => {this.props.changePrice(e.target.value); this.realtime(e.target.value)}} />
+                        <input type="text" placeholder={this.state.target} onChange={(e) => {this.props.changeTarget(e.target.value); this.myTarget(e.target.value)}} />
                     </label>
                 </form>
                 <button id="submit" onClick={this.post}>submit</button>
@@ -124,6 +132,12 @@ const mapDispatchToProps = (dispatch) => {
         changePrice: (value) => {
             dispatch({
                 type: "CHANGE_PRICE",
+                payload: value
+            });
+        },
+        changeTarget: (value) => {
+            dispatch({
+                type: "CHANGE_TARGET",
                 payload: value
             });
         }
