@@ -16,8 +16,8 @@ class Panel extends React.Component {
 
         window.Twitch.ext.onAuthorized(async auth => {
             // GET
-            const url = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks?Id=${auth.channelId}&Task=${auth.channelId}`;
-            fetch(url, {
+            const getURL = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks?Id=${auth.channelId}&Task=${auth.channelId}`;
+            fetch(getURL, {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
@@ -78,12 +78,10 @@ class Panel extends React.Component {
         return (
             <React.Fragment>
                 <div id="authinfo">{this.state.displayName}</div>
-                <div id="price">Bits raised: {this.state.bitsRaised}. Bits required: {this.state.price}.
-                { this.state.bitsRaised / this.state.price * 100 + "%" }
-                </div>
-
+                <div id="price">Bits raised: {this.state.bitsRaised}. Bits required: {this.state.price}.</div>
                 { !this.state.isHidden && <button id="reveal" onClick={this.reveal}>Contribute</button> }
                 { this.state.isVisible && <Products /> }
+                { this.state.bitsRaised / this.state.price * 100 + "%" }
             </React.Fragment>
         ); // end of return
     } // end of render
