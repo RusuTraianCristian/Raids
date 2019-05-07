@@ -27,7 +27,8 @@ class Panel extends React.Component {
             .then(data => {
                 this.setState({
                     price: data.Bits,
-                    bitsRaised: data.BitsRaised
+                    bitsRaised: data.BitsRaised,
+                    target: data.RaidTarget
                 });
             })
             .catch(error => console.error(error));
@@ -77,7 +78,7 @@ class Panel extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div id="authinfo">{this.state.displayName}</div>
+                <div id="authinfo">{this.state.displayName} will raid: {this.state.target}</div>
                 <div id="price">bits raised: {this.state.bitsRaised}</div>
                 <div id="price">bits required: {this.state.price}</div>
                 <div id="price">{ Math.floor(this.state.bitsRaised / this.state.price * 100) + "%" }</div>
