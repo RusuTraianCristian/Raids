@@ -43,3 +43,9 @@ input[type=text] {
     text-transform: uppercase;
     letter-spacing: 1.5px;
 }
+
+form label span {
+    color: #9686d5;
+    font-size: 14px;
+    font-family: monospace;
+}
