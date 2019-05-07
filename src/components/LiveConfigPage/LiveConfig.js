@@ -91,13 +91,14 @@ class LiveConfig extends React.Component {
     render() {
         return (
             <React.Fragment>
-                    <div id="authinfo">{this.state.displayName}</div>
-                    <div id="price">Bits raised: {this.state.bitsRaised}. Bits required: {this.state.price}.</div>
-                    <form>
-                        <label>
-                            <input type="text" pattern="[0-9]*" placeholder="0" onChange={(e) => {this.props.changePrice(e.target.value); this.post()}} />
-                        </label>
-                    </form>
+                <div id="authinfo">{this.state.displayName}</div>
+                <div id="price">bits raised: {this.state.bitsRaised}</div>
+                <div id="price">bits required: {this.state.price}</div>
+                <form>
+                    <label>
+                        <input type="text" pattern="[0-9]*" placeholder="0" onChange={(e) => {this.props.changePrice(e.target.value); this.post()}} />
+                    </label>
+                </form>
             </React.Fragment>
         ); // end of return
     } // end of render
