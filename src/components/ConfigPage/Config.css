@@ -31,14 +31,14 @@ input[type=text] {
 #submit {
     width: 50%;
     height: 44px;
-    background: #43cc92;
+    border: 2px solid #43cc92;
     color: #fff;
+    background: transparent;
     font-size: 20px;
     outline-style: none;
-    border-style: none;
     user-select: none;
     cursor: pointer;
-    margin: 30px 0;
+    margin: 30px auto;
     font-family: monospace;
     text-transform: uppercase;
     letter-spacing: 1.5px;

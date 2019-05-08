@@ -22,7 +22,6 @@ body {
     border: 1px solid #6d5dac;
     color: #000;
     font-weight: 700;
-    letter-spacing: 1px;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
@@ -30,7 +29,7 @@ body {
     transition: all 0.3s ease-in-out;
     width: calc(100% / 4 - 8px);
     height: 24px;
-    margin: 3px 3px;
+    margin: 3px;
     text-align: center;
     line-height: 24px;
     cursor: pointer;

@@ -92,15 +92,18 @@ class Config extends React.Component {
     } // END OF POST
     realtime = (e) => {
         this.setState({
-            price: e
+            price: e,
+            buttoncolor: '#43cc92'
         });
     }
     myTarget = (e) => {
         this.setState({
-            target: e
+            target: e,
+            buttoncolor: '#43cc92'
         });
     }
     render() {
+        const styles = {'background': this.state.buttoncolor}
         return (
             <React.Fragment>
                 <div id="authinfo">{this.state.displayName} will raid: {this.state.target}</div>
@@ -115,7 +118,7 @@ class Config extends React.Component {
                         <input type="text" placeholder={this.state.target} onChange={(e) => {this.props.changeTarget(e.target.value); this.myTarget(e.target.value)}} />
                     </label>
                 </form>
-                <button id="submit" onClick={this.post}>submit</button>
+                <button id="submit" style={styles} onClick={this.post}>submit</button>
             </React.Fragment>
         ); // end of return
     } // end of render
