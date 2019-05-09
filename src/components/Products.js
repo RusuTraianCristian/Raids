@@ -40,7 +40,7 @@ class Products extends React.Component {
                             id: auth.channelId,
                             setBitsRaised: setBitsRaised
                         })
-                    });
+                    }).then(response => {}); // => trigger function to hide all prices buttons after contributing
                 });
             });
             // END of POST
