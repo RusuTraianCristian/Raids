@@ -10,7 +10,7 @@ class Config extends React.Component {
         super(props);
         this.state = store.getState();
 
-    } // end of constructor
+    }
 
     componentDidMount() {
 
@@ -36,22 +36,28 @@ class Config extends React.Component {
             // END OF GET BITS RAISED
 
             async function twitchFetch(url) {
-              const headers = new Headers({
-                'Client-ID': auth.clientId,
-                'Accept': "application/vnd.twitchtv.v5+json",
-                'Authorization': "Bearer " + auth.token
-              });
+                const headers = new Headers({
+                    'Client-ID': auth.clientId,
+                    'Accept': "application/vnd.twitchtv.v5+json",
+                    'Authorization': "Bearer " + auth.token
+                });
 
-              const options = { method: "GET", headers: headers };
+                const options = {
+                    method: "GET",
+                    headers: headers
+                };
 
-              try {
-                const response = await fetch(url, options);
-                const data = await response.json();
-                return data;
-              } catch (err) {
-                console.error(err);
-              }
-              return undefined;
+                try {
+                    const response = await fetch(url, options);
+                    const data = await response.json();
+                    return data;
+                }
+
+                catch (err) {
+                    console.error(err);
+                }
+
+                return undefined;
             }
 
             async function getDisplay(userId) {
@@ -72,36 +78,40 @@ class Config extends React.Component {
 
     post = () => {
         window.Twitch.ext.onAuthorized(async auth => {
-                // POST
-                const { price } = store.getState();
-                const { target } = store.getState();
-                const postURL = 'https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks';
-                fetch(postURL, {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        id: auth.channelId,
-                        task: price,
-                        raidTarget: target
-                    })
-                });
+            // POST
+            const { price } = store.getState();
+            const { target } = store.getState();
+            const postURL = 'https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks';
+            fetch(postURL, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: auth.channelId,
+                    task: price,
+                    raidTarget: target
+                })
+            });
+            // END OF POST
         });
-    } // END OF POST
+    }
+
     realtime = (e) => {
         this.setState({
             price: e,
             buttoncolor: '#43cc92'
         });
     }
+
     myTarget = (e) => {
         this.setState({
             target: e,
             buttoncolor: '#43cc92'
         });
     }
+
     render() {
         const styles = {'background': this.state.buttoncolor}
         return (
@@ -120,7 +130,7 @@ class Config extends React.Component {
                 </form>
                 <button id="submit" style={styles} onClick={this.post}>submit</button>
             </React.Fragment>
-        ); // end of return
+        );
     } // end of render
 } // end of component
 
