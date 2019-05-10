@@ -13,11 +13,10 @@ class Config extends React.Component {
     }
 
     componentDidMount() {
-
         window.Twitch.ext.onAuthorized(async auth => {
 
             // GET BITSRAISED
-            const getURL = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/bitsraised?Id=${auth.channelId}&Task=${auth.channelId}`;
+            //const getURL = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/bitsraised?Id=${auth.channelId}&Task=${auth.channelId}`;
             fetch(getURL, {
                 headers: {
                     'Accept': 'application/json',
@@ -101,34 +100,41 @@ class Config extends React.Component {
     realtime = (e) => {
         this.setState({
             price: e,
-            buttoncolor: '#43cc92'
+            buttonbg: '#9686d5',
+            buttoncolor: '#000'
         });
     }
 
     myTarget = (e) => {
         this.setState({
             target: e,
-            buttoncolor: '#43cc92'
+            buttonbg: '#9686d5',
+            buttoncolor: '#000'
         });
     }
 
     render() {
-        const styles = {'background': this.state.buttoncolor}
+        const styles = {'background': this.state.buttonbg, 'color': this.state.buttoncolor }
         return (
             <React.Fragment>
-                <div id="authinfo">{this.state.displayName} will raid: {this.state.target}</div>
-                <div id="price">bits raised: {this.state.bitsRaised}</div>
-                <div id="price">bits required: {this.state.price}</div>
-                <div id="price">{ Math.floor(this.state.bitsRaised / this.state.price * 100) + "%" }</div>
-                <form>
-                    <label>
-                        <span>Bits required for raid:</span>
-                        <input type="text" pattern="[0-9]*" placeholder={this.state.price} onChange={(e) => {this.props.changePrice(e.target.value); this.realtime(e.target.value)}} />
-                        <span>Raid target channel:</span>
-                        <input type="text" placeholder={this.state.target} onChange={(e) => {this.props.changeTarget(e.target.value); this.myTarget(e.target.value)}} />
-                    </label>
-                </form>
-                <button id="submit" style={styles} onClick={this.post}>submit</button>
+                <div id="welcome">Hello and welcome, <span>Bootcamp{this.state.displayName}</span>!</div>
+                <div className="section">
+                    <form>
+                        <label>
+                            <span>Bits required for raid:</span>
+                            <input type="text" pattern="[0-9]*" placeholder={this.state.price} onChange={(e) => {this.props.changePrice(e.target.value); this.realtime(e.target.value)}} />
+                            <span>Raid target channel:</span>
+                            <input type="text" placeholder={this.state.target} onChange={(e) => {this.props.changeTarget(e.target.value); this.myTarget(e.target.value)}} />
+                        </label>
+                    </form>
+                    <button className="submit" style={styles} onClick={this.post}>save settings</button>
+                </div>
+                <div className="section">
+                    <div id="price">Your raid's target channel is: <span>{this.state.target}</span></div>
+                    <div id="price">bits raised: {this.state.bitsRaised}</div>
+                    <div id="price">bits required: {this.state.price}</div>
+                    <div id="price">{ Math.floor(this.state.bitsRaised / this.state.price * 100) + "%" }</div>
+                </div>
             </React.Fragment>
         );
     } // end of render
