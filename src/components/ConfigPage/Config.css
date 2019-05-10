@@ -97,8 +97,23 @@ form label span {
 .section {
     width: calc(50% - 82px);
     float: left;
-    min-height: 350px;
+    height: 784px;
     padding: 40px;
     border: 1px solid rgba(150,134,213, 0.31);
     background: transparent;
+}
+
+::-webkit-scrollbar {
+      height: 10px;
+	  width: 4px;
+	  background: transparent;
+      border-left: 2px solid transparent;
+    }
+::-webkit-scrollbar-thumb {
+    background: #9686d5;
+    border: 1px solid transparent;
+    -webkit-border-radius: 1ex;
+    border-radius: 2px;
+}
+::-webkit-scrollbar-corner {
 }
