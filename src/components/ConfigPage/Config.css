@@ -97,7 +97,7 @@ form label span {
 .section {
     width: calc(50% - 82px);
     float: left;
-    height: 784px;
+    height: 584px;
     padding: 40px;
     border: 1px solid rgba(150,134,213, 0.31);
     background: transparent;

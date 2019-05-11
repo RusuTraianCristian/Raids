@@ -14,8 +14,7 @@ class Config extends React.Component {
 
     componentDidMount() {
         window.Twitch.ext.onAuthorized(async auth => {
-
-            // GET BITSRAISED
+            // GET
             //const getURL = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/bitsraised?Id=${auth.channelId}&Task=${auth.channelId}`;
             fetch(getURL, {
                 headers: {
@@ -32,7 +31,7 @@ class Config extends React.Component {
                 });
             })
             .catch(error => console.error(error));
-            // END OF GET BITS RAISED
+            // END OF GET
 
             async function twitchFetch(url) {
                 const headers = new Headers({

@@ -40,10 +40,27 @@ class Products extends React.Component {
                             id: auth.channelId,
                             setBitsRaised: setBitsRaised
                         })
-                    }).then(response => {}); // => trigger function to hide all prices buttons after contributing
+                    }).then(response => {this.sendExtensionChatMessage(setBitsRaised)});
                 });
             });
             // END of POST
+        });
+    }
+
+    sendExtensionChatMessage = (eb) => {
+        window.Twitch.ext.onAuthorized(auth => {
+            fetch(`https://api.twitch.tv/extensions/${auth.clientId}/0.0.1/channels/${auth.channelId}/chat`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + auth.token,
+                    'Client-ID': auth.clientId
+                },
+                body: JSON.stringify({
+                    'text': 'A member supported the raid with ' + eb + ' bits.'
+                })
+            });
         });
     }
 
