@@ -13,7 +13,6 @@ class Panel extends React.Component {
     } // end of constructor
 
     componentDidMount() {
-
         window.Twitch.ext.onAuthorized(async auth => {
             // GET
             const getURL = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks?Id=${auth.channelId}&Task=${auth.channelId}`;
