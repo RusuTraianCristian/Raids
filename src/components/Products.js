@@ -30,7 +30,6 @@ class Products extends React.Component {
 
     buyRaid(e) {
         const bitsRaisedUrl = 'https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/bitsraised';
-
         window.Twitch.ext.bits.getProducts().then(products => {
             Twitch.ext.bits.useBits(`raid${e}`);
             // START of POST
@@ -53,7 +52,8 @@ class Products extends React.Component {
     }
 
     sendExtensionChatMessage = (eb) => {
-        fetch(`https://api.twitch.tv/extensions/${this.state.auth.clientId}/0.0.1/channels/${this.state.auth.channelId}/chat`, {
+        const twitchUrl = `https://api.twitch.tv/extensions/${this.state.auth.clientId}/0.0.1/channels/${this.state.auth.channelId}/chat`;
+        fetch(twitchUrl, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
