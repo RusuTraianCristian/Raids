@@ -35,6 +35,7 @@ class Products extends React.Component {
             // START of POST
             window.Twitch.ext.bits.onTransactionComplete(TransactionObject => {
                 const setBitsRaised = TransactionObject.product.cost.amount;
+                const who = TransactionObject.displayName;
                 fetch(bitsRaisedUrl, {
                     method: 'POST',
                     headers: {
@@ -45,13 +46,13 @@ class Products extends React.Component {
                         id: this.state.auth.channelId,
                         setBitsRaised: setBitsRaised
                     })
-                }).then(response => {this.sendExtensionChatMessage(setBitsRaised)});
+                }).then(response => {this.sendExtensionChatMessage(who, setBitsRaised)});
             });
             // END of POST
         });
     }
 
-    sendExtensionChatMessage = (eb) => {
+    sendExtensionChatMessage = (who, bitsSent) => {
         const twitchUrl = `https://api.twitch.tv/extensions/${this.state.auth.clientId}/0.0.1/channels/${this.state.auth.channelId}/chat`;
         fetch(twitchUrl, {
             method: 'POST',
@@ -62,7 +63,7 @@ class Products extends React.Component {
                 'Client-ID': this.state.auth.clientId
             },
             body: JSON.stringify({
-                'text': `${this.state.auth.userId} supported the raid with ${eb} bits.`
+                'text': `${who} supported the raid with ${bitsSent} bits.`
             })
         });
     }

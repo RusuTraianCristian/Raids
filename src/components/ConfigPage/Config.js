@@ -98,22 +98,17 @@ class Config extends React.Component {
 
     realtime = (e) => {
         this.setState({
-            price: e,
-            buttonbg: '#9686d5',
-            buttoncolor: '#000'
+            price: e
         });
     }
 
     myTarget = (e) => {
         this.setState({
-            target: e,
-            buttonbg: '#9686d5',
-            buttoncolor: '#000'
+            target: e
         });
     }
 
     render() {
-        const styles = {'background': this.state.buttonbg, 'color': this.state.buttoncolor }
         return (
             <React.Fragment>
                 <div id="welcome">Hello and welcome, <span>Bootcamp{this.state.displayName}</span>!</div>
@@ -126,7 +121,7 @@ class Config extends React.Component {
                             <input type="text" placeholder={this.state.target} onChange={(e) => {this.props.changeTarget(e.target.value); this.myTarget(e.target.value)}} />
                         </label>
                     </form>
-                    <button className="submit" style={styles} onClick={this.post}>save settings</button>
+                    <button className="submit" onClick={this.post}>save settings</button>
                 </div>
                 <div className="section">
                     <div id="price">Your raid's target channel is: <span>{this.state.target}</span></div>
@@ -171,7 +166,5 @@ const mapDispatchToProps = (dispatch) => {
 store.subscribe(() => {
     localStorage.setItem('reduxState', JSON.stringify(store.getState()));
 });
-
-// exports the component and its mapped functions
 
 export default connect(mapStateToProps, mapDispatchToProps)(Config);
