@@ -77,6 +77,11 @@ class Panel extends React.Component {
     render() {
         return (
             <React.Fragment>
+                <div className="bgbar">
+                    <div className="childbar">
+                        <div className="dot"></div>
+                    </div>
+                </div>
                 <div id="authinfo">{this.state.displayName} will raid: {this.state.target}</div>
                 <div id="price">bits raised: {this.state.bitsRaised}</div>
                 <div id="price">bits required: {this.state.price}</div>

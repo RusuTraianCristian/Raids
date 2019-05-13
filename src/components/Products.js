@@ -63,7 +63,7 @@ class Products extends React.Component {
                 'Client-ID': this.state.auth.clientId
             },
             body: JSON.stringify({
-                'text': `${who} supported the raid with ${bitsSent} bits.`
+                'text': `${who} supported the raid with ${bitsSent} bits. Visit https://raids.app for more information.`
             })
         });
     }
