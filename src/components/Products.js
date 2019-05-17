@@ -30,12 +30,12 @@ class Products extends React.Component {
 
     buyRaid(e) {
         const bitsRaisedUrl = 'https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/bitsraised';
-
         window.Twitch.ext.bits.getProducts().then(products => {
             Twitch.ext.bits.useBits(`raid${e}`);
             // START of POST
             window.Twitch.ext.bits.onTransactionComplete(TransactionObject => {
                 const setBitsRaised = TransactionObject.product.cost.amount;
+                const who = TransactionObject.displayName;
                 fetch(bitsRaisedUrl, {
                     method: 'POST',
                     headers: {
@@ -46,14 +46,15 @@ class Products extends React.Component {
                         id: this.state.auth.channelId,
                         setBitsRaised: setBitsRaised
                     })
-                }).then(response => {this.sendExtensionChatMessage(setBitsRaised)});
+                }).then(response => {this.sendExtensionChatMessage(who, setBitsRaised)});
             });
             // END of POST
         });
     }
 
-    sendExtensionChatMessage = (eb) => {
-        fetch(`https://api.twitch.tv/extensions/${this.state.auth.clientId}/0.0.1/channels/${this.state.auth.channelId}/chat`, {
+    sendExtensionChatMessage = (who, bitsSent) => {
+        const twitchUrl = `https://api.twitch.tv/extensions/${this.state.auth.clientId}/0.0.1/channels/${this.state.auth.channelId}/chat`;
+        fetch(twitchUrl, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -62,7 +63,7 @@ class Products extends React.Component {
                 'Client-ID': this.state.auth.clientId
             },
             body: JSON.stringify({
-                'text': `${this.state.auth.userId} supported the raid with ${eb} bits.`
+                'text': `${who} supported the raid with ${bitsSent} bits. Visit https://raids.app for more information.`
             })
         });
     }

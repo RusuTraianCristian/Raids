@@ -15,7 +15,7 @@ class Panel extends React.Component {
     componentDidMount() {
         window.Twitch.ext.onAuthorized(async auth => {
             // GET
-            const getURL = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks?Id=${auth.channelId}&Task=${auth.channelId}`;
+            //const getURL = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks?Id=${auth.channelId}&Task=${auth.channelId}`;
             fetch(getURL, {
                 headers: {
                     'Accept': 'application/json',
@@ -77,11 +77,16 @@ class Panel extends React.Component {
     render() {
         return (
             <React.Fragment>
+                <div className="bgbar">
+                    <div className="childbar">
+                        <div className="dot"></div>
+                    </div>
+                </div>
                 <div id="authinfo">{this.state.displayName} will raid: {this.state.target}</div>
                 <div id="price">bits raised: {this.state.bitsRaised}</div>
                 <div id="price">bits required: {this.state.price}</div>
                 <div id="price">{ Math.floor(this.state.bitsRaised / this.state.price * 100) + "%" }</div>
-                { !this.state.isHidden && <button id="reveal" onClick={this.reveal}>Contribute</button> }
+                { !this.state.isHidden && <button id="reveal" onClick={this.reveal}>support raid</button> }
                 { this.state.isVisible && <Products /> }
             </React.Fragment>
         ); // end of return
