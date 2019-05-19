@@ -1,9 +1,6 @@
 import "babel-polyfill";
-import "./api/twitchExt";
-import React from "react";
-import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import store from "./store/index";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 // uses code-splitting for efficiency
 const rootConfig = document.getElementById("root-config");
@@ -12,20 +9,20 @@ const rootPanel = document.getElementById("root-panel");
 const rootVideoComponent = document.getElementById("root-videocomponent");
 
 if (rootPanel) {
-  import("./components/PanelPage/Panel.js").then(Panel =>
-    ReactDOM.render(<Provider store={store}><Panel.default /></Provider>, rootPanel)
+  import("./components/Panel.js").then(Panel =>
+    ReactDOM.render(<Panel.default />, rootPanel)
   );
 } else if (rootConfig) {
-  import("./components/ConfigPage/Config.js").then(Config =>
-    ReactDOM.render(<Provider store={store}><Config.default /></Provider>, rootConfig)
+  import("./components/Config.js").then(Config =>
+    ReactDOM.render(<Config.default />, rootConfig)
   );
 } else if (rootLiveConfig) {
-  import("./components/LiveConfigPage/LiveConfig.js").then(LiveConfig =>
-    ReactDOM.render(<Provider store={store}><LiveConfig.default /></Provider>, rootLiveConfig)
+  import("./components/LiveConfig.js").then(LiveConfig =>
+    ReactDOM.render(<LiveConfig.default />, rootLiveConfig)
   );
 } else if (rootVideoComponent) {
-  import("./components/VideoComponentPage/VideoComponent.js").then(VideoComponent =>
-    ReactDOM.render(<Provider store={store}><VideoComponent.default /></Provider>, rootVideoComponent)
+  import("./components/VideoComponent.js").then(VideoComponent =>
+    ReactDOM.render(<VideoComponent.default />, rootVideoComponent)
   );
 } else {
   console.error("Unsupported Page!");

@@ -1,21 +1,19 @@
-import React from "react";
-import "./Panel.css";
-import { connect } from "react-redux";
-import store from "../../store/index";
-import { CHANGE_PRICE } from "../../constants/action-types";
-import { changePrice } from "../../actions";
-import Products from '../Products';
+import React, { useState, useRef, useEffect } from 'react';
+import firebase from '../firebase.js';
+import "./VideoComponent.css";
+import Products from './Products';
 
-class Panel extends React.Component {
+class VideoComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = store.getState();
     } // end of constructor
 
     componentDidMount() {
+
         window.Twitch.ext.onAuthorized(async auth => {
             // GET
-            //const getURL = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks?Id=${auth.channelId}&Task=${auth.channelId}`;
+            const getURL = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks?Id=${auth.channelId}&Task=${auth.channelId}`;
             fetch(getURL, {
                 headers: {
                     'Accept': 'application/json',
@@ -26,8 +24,7 @@ class Panel extends React.Component {
             .then(data => {
                 this.setState({
                     price: data.Bits,
-                    bitsRaised: data.BitsRaised,
-                    target: data.RaidTarget
+                    bitsRaised: data.BitsRaised
                 });
             })
             .catch(error => console.error(error));
@@ -77,28 +74,15 @@ class Panel extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div className="bgbar">
-                    <div className="childbar">
-                        <div className="dot"></div>
-                    </div>
-                </div>
-                <div id="authinfo">{this.state.displayName} will raid: {this.state.target}</div>
+                <div id="authinfo">{this.state.displayName}</div>
                 <div id="price">bits raised: {this.state.bitsRaised}</div>
                 <div id="price">bits required: {this.state.price}</div>
                 <div id="price">{ Math.floor(this.state.bitsRaised / this.state.price * 100) + "%" }</div>
-                { !this.state.isHidden && <button id="reveal" onClick={this.reveal}>support raid</button> }
+                { !this.state.isHidden && <button id="reveal" onClick={this.reveal}>Contribute</button> }
                 { this.state.isVisible && <Products /> }
             </React.Fragment>
         ); // end of return
     } // end of render
 } // end of component
 
-// stores persistent information in localStorage whenever an action is dispatched
-
-store.subscribe(() => {
-    localStorage.setItem('reduxState', JSON.stringify(store.getState()));
-});
-
-// exports the component
-
-export default Panel;
+export default VideoComponent;

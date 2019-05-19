@@ -1,9 +1,6 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from 'react';
+import firebase from '../firebase.js';
 import "./LiveConfig.css";
-import { connect } from "react-redux";
-import store from "../../store/index";
-import { CHANGE_PRICE } from "../../constants/action-types";
-import { changePrice } from "../../actions";
 
 class LiveConfig extends React.Component {
     constructor(props) {
@@ -126,12 +123,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-// stores persistent information in localStorage whenever an action is dispatched
-
-store.subscribe(() => {
-    localStorage.setItem('reduxState', JSON.stringify(store.getState()));
-});
-
-// exports the component and its mapped functions
-
-export default connect(mapStateToProps, mapDispatchToProps)(LiveConfig);
+export default LiveConfig;

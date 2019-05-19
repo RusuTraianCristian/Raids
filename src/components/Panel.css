@@ -100,7 +100,7 @@ body {
 .childbar {
   height: 1px;
   background: #9686d5;
-  width: 67%;
+  max-width: 100%;
 }
 
 .dot {

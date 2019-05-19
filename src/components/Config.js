@@ -1,21 +1,18 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from 'react';
+import firebase from '../firebase.js';
 import "./Config.css";
-import { connect } from "react-redux";
-import store from "../../store/index";
-import { CHANGE_PRICE } from "../../constants/action-types";
-import { changePrice } from "../../actions";
 
 class Config extends React.Component {
     constructor(props) {
         super(props);
         this.state = store.getState();
-
     }
 
     componentDidMount() {
+
         window.Twitch.ext.onAuthorized(async auth => {
-            // GET
-            //const getURL = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/bitsraised?Id=${auth.channelId}&Task=${auth.channelId}`;
+
+            const getURL = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/bitsraised?Id=${auth.channelId}&Task=${auth.channelId}`;
             fetch(getURL, {
                 headers: {
                     'Accept': 'application/json',
@@ -26,7 +23,6 @@ class Config extends React.Component {
             .then(data => {
                 this.setState({
                     price: data.Bits,
-                    bitsRaised: data.BitsRaised,
                     target: data.RaidTarget
                 });
             })
@@ -71,12 +67,22 @@ class Config extends React.Component {
                 displayName: displayName
             });
         });
-
+        // firebase
+        window.Twitch.ext.onAuthorized(auth => {
+            const channelId = auth.channelId;
+            const ref = firebase.database().ref('channels/').child(channelId);
+            ref.on("value", (snapshot) => {
+                const currentData = JSON.stringify(snapshot.val(), null, 2);
+                this.setState({
+                    bitsRaised: currentData
+                });
+            });
+        });
+        // firebase
     } // end of componentDidMount
 
     post = () => {
         window.Twitch.ext.onAuthorized(async auth => {
-            // POST
             const { price } = store.getState();
             const { target } = store.getState();
             const postURL = 'https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/tasks';
@@ -92,7 +98,9 @@ class Config extends React.Component {
                     raidTarget: target
                 })
             });
-            // END OF POST
+            const channelId = auth.channelId;
+            const ref = firebase.database().ref('channels/').child(channelId);
+            ref.set(0);
         });
     }
 
@@ -166,10 +174,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-// stores persistent information in localStorage whenever an action is dispatched
-
-store.subscribe(() => {
-    localStorage.setItem('reduxState', JSON.stringify(store.getState()));
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Config);
+export default Config;
