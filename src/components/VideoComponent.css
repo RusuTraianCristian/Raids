@@ -1,0 +1,62 @@
+body {
+    font-family: monospace;
+    background: #19171c;
+}
+
+#price {
+    color: #43cc92;
+    border-bottom: 1px solid rgba(150,134,213, 0.5);
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+#authinfo {
+    color: #9686d5;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+#raid {
+    background: #6d5dac;
+    border: 1px solid #6d5dac;
+    color: #000;
+    font-weight: 700;
+    letter-spacing: 1px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    width: calc(100% / 4 - 8px);
+    height: 24px;
+    margin: 3px 3px;
+    text-align: center;
+    line-height: 24px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 14px;
+    font-family: Arial;
+    float: left;
+    border-radius: 3px;
+}
+
+#raid:hover {
+    background: #9686d5;
+    background: linear-gradient(315deg, #9686d5 0%, #6d5dac 100%);
+}
+
+#reveal {
+    width: 100%;
+    height: 50px;
+    border: 2px solid #6d5dac;
+    border-radius: 2px;
+    background: transparent;
+    color: #6d5dac;
+    user-select: none;
+    cursor: pointer;
+    outline-style: none;
+}
