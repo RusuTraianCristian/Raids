@@ -1,9 +1,12 @@
-import React, { Fragment, useState, useRef, useEffect } from 'react';
+import React, { Fragment, useState, useRef, useEffect, useContext } from 'react';
 import firebase from '../firebase';
 import "./Config.css";
 import { onAuthorized } from '../Twitch';
+import Raids from './Raids';
 
 function Config() {
+    const RaidsContext = React.createContext(null);
+
     const [authorized, setAuthorized] = useState({});
     const [bits, setBits] = useState(0);
     const [info, setInfo] = useState({});
@@ -60,6 +63,9 @@ function Config() {
 
     return (
         <Fragment>
+            <RaidsContext.Provider value={bits}>
+                <Raids />
+            </RaidsContext.Provider>
             <div id="price">component with current live raid with graph</div>
             <div id="price">component with settings able to change target and required and reset bits</div>
         </Fragment>
