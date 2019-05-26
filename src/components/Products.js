@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import firebase from '../firebase.js';
+import "./Products.css";
 
 class Products extends React.Component {
     constructor(props) {

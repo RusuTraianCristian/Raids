@@ -5,8 +5,7 @@ body {
 
 #price {
     color: #43cc92;
-    border: 1px solid #43cc92;
-    border-radius: 3px;
+    border-bottom: 1px solid rgba(150,134,213, 0.5);
     padding: 10px;
     margin: 10px 0;
     font-size: 14px;
@@ -15,6 +14,10 @@ body {
 
 #authinfo {
     color: #9686d5;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 14px;
+    line-height: 20px;
 }
 
 #raid {
