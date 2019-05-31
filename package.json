@@ -15,6 +15,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "firebase": "^6.0.2",
+    "less": "^3.9.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },

@@ -1,0 +1,151 @@
+/* less variables */
+@purple: #9686d5;
+@darkpurple: #7866be;
+@green: #43cc92;
+@twitch: #19171c;
+/* end of less variables */
+
+body {
+    font-family: monospace;
+    background: #19171c;
+    padding: 0;
+    margin: 0;
+    color: #9686d5;
+}
+
+input[type=text] {
+    outline-style: none;
+    border: 2px solid rgba(150,134,213, 0.5);
+    color: @purple;
+    background: #000;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 44px;
+    width: calc(100% - 24px);
+    text-align: right;
+    border-radius: 4px;
+    font-family: Arial;
+    font-weight: 100;
+    margin: 20px auto;
+}
+
+input[type=text]:focus {
+    border: 2px solid @purple;
+}
+
+form ::placeholder {
+    color: rgba(150,134,213, 0.5);
+}
+
+form label span {
+    color: @purple;
+    margin: 20px 0;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: left;
+    font-family: monospace;
+    font-weight: 100;
+    display: inline-block;
+}
+
+#welcome {
+    color: #000;
+    background: @purple;
+    width: calc(100% - 20px);
+    height: 34px;
+    line-height: 34px;
+    padding: 0 10px;
+    font-size: 16px;
+    text-align: right;
+    font-weight: 100;
+    font-family: monospace;
+}
+
+#welcome span {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#price {
+    color: @green;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+#price span {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.submit {
+    width: 100%;
+    float: right;
+    line-height: 61px;
+    border: 2px solid @darkpurple;
+    color: #ffffff;
+    background: @twitch;
+    font-size: 18px;
+    outline-style: none;
+    user-select: none;
+    cursor: pointer;
+    margin: 20px auto;
+    font-family: Arial;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.submit:hover {
+    border: 2px solid @purple;
+}
+
+.section {
+    width: calc(100% - 82px);
+    float: left;
+    height: 618px;
+    padding: 40px;
+    border: 1px solid rgba(150,134,213, 0.31);
+    background: transparent;
+}
+
+::-webkit-scrollbar {
+      height: 10px;
+	  width: 4px;
+	  background: transparent;
+      border-left: 2px solid transparent;
+    }
+::-webkit-scrollbar-thumb {
+    background: #9686d5;
+    border: 1px solid transparent;
+    -webkit-border-radius: 1ex;
+    border-radius: 2px;
+}
+::-webkit-scrollbar-corner {
+}
+
+.reset {
+    width: 100%;
+    line-height: 61px;
+    border: 4px solid #c4374c;
+    color: #ffffff;
+    background: @twitch;
+    font-size: 18px;
+    outline-style: none;
+    user-select: none;
+    cursor: pointer;
+    margin: 20px 0;
+    font-family: Arial;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}

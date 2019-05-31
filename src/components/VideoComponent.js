@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import "./VideoComponent.css";
+import './VideoComponent.less';
 import Context from './Context';
 
 const VideoComponent = () => {

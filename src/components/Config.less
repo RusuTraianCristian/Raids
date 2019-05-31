@@ -1,28 +1,36 @@
+/* less variables */
+@purple: #9686d5;
+@darkpurple: #7866be;
+@green: #43cc92;
+@twitch: #19171c;
+/* end of less variables */
+
 body {
     font-family: monospace;
     background: #19171c;
     padding: 0;
     margin: 0;
+    color: #9686d5;
 }
 
 input[type=text] {
     outline-style: none;
-    border: 1px solid rgba(150,134,213, 0.5);
-    color: #9686d5;
+    border: 2px solid rgba(150,134,213, 0.5);
+    color: @purple;
     background: #000;
     padding: 10px;
     font-size: 16px;
-    line-height: 24px;
-    width: calc(100% - 22px);
+    line-height: 44px;
+    width: calc(100% - 24px);
     text-align: right;
     border-radius: 4px;
-    font-family: monospace;
+    font-family: Arial;
     font-weight: 100;
-    margin: 10px 0;
+    margin: 20px auto;
 }
 
 input[type=text]:focus {
-    border: 1px solid #9686d5;
+    border: 2px solid @purple;
 }
 
 form ::placeholder {
@@ -30,18 +38,19 @@ form ::placeholder {
 }
 
 form label span {
-    color: #9686d5;
+    color: @purple;
     margin: 20px 0;
     font-size: 16px;
     line-height: 24px;
     text-align: left;
     font-family: monospace;
     font-weight: 100;
+    display: inline-block;
 }
 
 #welcome {
     color: #000;
-    background: #9686d5;
+    background: @purple;
     width: calc(100% - 20px);
     height: 34px;
     line-height: 34px;
@@ -58,7 +67,7 @@ form label span {
 }
 
 #price {
-    color: #43cc92;
+    color: @green;
     padding: 10px 0;
     font-size: 14px;
 }
@@ -70,18 +79,19 @@ form label span {
 
 .submit {
     width: 100%;
-    line-height: 64px;
-    border: 2px solid #9686d5;
-    color: #9686d5;
-    background: #19171c;
+    float: right;
+    line-height: 61px;
+    border: 2px solid @darkpurple;
+    color: #ffffff;
+    background: @twitch;
     font-size: 18px;
     outline-style: none;
     user-select: none;
     cursor: pointer;
-    margin: 30px auto;
-    font-family: monospace;
+    margin: 20px auto;
+    font-family: Arial;
     text-transform: capitalize;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     border-radius: 4px;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
@@ -91,13 +101,13 @@ form label span {
 }
 
 .submit:hover {
-    border: 2px solid #7866be;
+    border: 2px solid @purple;
 }
 
 .section {
-    width: calc(50% - 82px);
+    width: calc(100% - 82px);
     float: left;
-    height: 584px;
+    height: 618px;
     padding: 40px;
     border: 1px solid rgba(150,134,213, 0.31);
     background: transparent;
@@ -118,26 +128,24 @@ form label span {
 ::-webkit-scrollbar-corner {
 }
 
-.bgbar {
-  margin: 50px 5%;
-  width: 90%;
-  height: 1px;
-  background: #ffffff;
-}
-
-.childbar {
-  height: 1px;
-  background: #9686d5;
-  width: 35%;
-}
-
-.dot {
-  height: 7px;
-  width: 7px;
-  background: #9686d5;
-  margin-top: -3px;
-  border-radius: 50%;
-  float: right;
-  cursor: pointer;
-  box-shadow: 0px 0px 17px 1px rgba(150,134,213, 1);
+.reset {
+    width: 100%;
+    line-height: 61px;
+    border: 4px solid #c4374c;
+    color: #ffffff;
+    background: @twitch;
+    font-size: 18px;
+    outline-style: none;
+    user-select: none;
+    cursor: pointer;
+    margin: 20px 0;
+    font-family: Arial;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }

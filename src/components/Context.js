@@ -1,8 +1,9 @@
 import React, { Fragment, useState, useRef, useEffect } from 'react';
-import firebase from '../firebase';
 import { onAuthorized } from '../Twitch';
-export const RaidsContext = React.createContext({});
+import firebase from '../firebase';
 import Raids from './Raids';
+import Products from './Products';
+export const RaidsContext = React.createContext({});
 
 const Context = () => {
 
@@ -45,13 +46,14 @@ const Context = () => {
         });
         // AWS
         const getURL = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/raids?Id=${channelId}&Task=${channelId}`;
-        fetch(getURL, {
+        const header = {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
-        })
+        }
+        fetch(getURL, header)
         .then(res => res.json())
         .then(data => {
             currentInfo = data;
@@ -62,8 +64,9 @@ const Context = () => {
 
     return (
         <Fragment>
-            <RaidsContext.Provider value={{bits, required, target}}>
+            <RaidsContext.Provider value={ { bits, required, target, channelId, userId, clientId, token } }>
                 <Raids />
+                <Products />
             </RaidsContext.Provider>
         </Fragment>
     );

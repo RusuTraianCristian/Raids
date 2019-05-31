@@ -1,17 +1,53 @@
-import React, { useState, useRef, useEffect } from 'react';
-import firebase from '../firebase.js';
-import "./Products.css";
+import React, { Fragment, useState, useRef, useEffect, useContext } from 'react';
+import { RaidsContext } from './Context';
+import firebase from '../firebase';
 
-class Products extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            options: [],
-            auth: {}
-        };
+const Products = () => {
+
+    const { bits, required, target, channelId, userId, clientId, token } = useContext(RaidsContext);
+    const [products, setProducts] = useState([]);
+    const prod = useRef(0);
+    let currentProducts = prod.current;
+    const getProducts = () => {
+        setProducts([...currentProducts]);
     }
 
-    componentDidMount() {
+    const buyRaid = (e) => {
+        window.Twitch.ext.bits.getProducts().then(products => {
+            Twitch.ext.bits.useBits(`raid${e}`);
+            window.Twitch.ext.bits.onTransactionComplete(TransactionObject => {
+                const amount = TransactionObject.product.cost.amount;
+                const raider = TransactionObject.displayName;
+                sendExtensionChatMessage(raider, amount);
+                pushBits(amount);
+            });
+        });
+    }
+
+    const sendExtensionChatMessage = (raider, amount) => {
+        const twitchUrl = `https://api.twitch.tv/extensions/${clientId}/0.0.1/channels/${channelId}/chat`;
+        fetch(twitchUrl, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token,
+                'Client-ID': clientId
+            },
+            body: JSON.stringify({
+                'text': `${raider} supported the raid with ${amount} bits. Visit https://raids.app for more information.`
+            })
+        });
+    }
+
+    const pushBits = (arg) => {
+        const ref = firebase.database().ref('channels/').child(channelId);
+        ref.transaction(current => {
+            return current + arg;
+        });
+    }
+
+    useEffect(() => {
         window.Twitch.ext.bits.getProducts().then(products => {
             let newArr = products.map(item => {
                 return item.cost.amount;
@@ -19,60 +55,19 @@ class Products extends React.Component {
             newArr.sort((a, b) => a - b);
             return newArr;
         }).then((newArr) => {
-            this.setState({
-                options: [...newArr]
-            });
+            currentProducts = newArr;
+            getProducts();
         });
-        window.Twitch.ext.onAuthorized(auth => {
-            this.setState({
-                auth: {...auth}
-            });
-        });
-    }
+    }, []);
 
-    buyRaid(e) {
-        window.Twitch.ext.bits.getProducts().then(products => {
-            Twitch.ext.bits.useBits(`raid${e}`);
-            window.Twitch.ext.bits.onTransactionComplete(TransactionObject => {
-                const setBitsRaised = TransactionObject.product.cost.amount;
-                const who = TransactionObject.displayName;
-                this.sendExtensionChatMessage(who, setBitsRaised);
-                this.pushBits(setBitsRaised);
-            });
-        });
-    }
-
-    sendExtensionChatMessage = (who, bitsSent) => {
-        const twitchUrl = `https://api.twitch.tv/extensions/${this.state.auth.clientId}/0.0.1/channels/${this.state.auth.channelId}/chat`;
-        fetch(twitchUrl, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + this.state.auth.token,
-                'Client-ID': this.state.auth.clientId
-            },
-            body: JSON.stringify({
-                'text': `${who} supported the raid with ${bitsSent} bits. Visit https://raids.app for more information.`
-            })
-        });
-    }
-
-    pushBits = (algo) => {
-        const channelId = this.state.auth.channelId;
-        const ref = firebase.database().ref('channels/').child(channelId);
-        ref.transaction(current => {
-            return current + algo;
-        });
-    }
-
-    render() {
-        return (
-            <React.Fragment>
-                <div id="options">{this.state.options.map(item => (<div id="raid" key={item} onClick={this.buyRaid.bind(this, item)}>{item}</div>))}</div>
-            </React.Fragment>
-        );
-    }
+    return (
+        <Fragment>
+            insert raid leader here
+            <div id="reveal">Join Raid</div>
+            <div id="options">{products.map(item => (<div id="raid" key={ item } onClick={() => buyRaid(item)}>{ item } bits</div>))}</div>
+            insert sound settings here
+        </Fragment>
+    );
 }
 
 export default Products;

@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
-import "./LiveConfig.css";
-import Context from './Context';
+import './LiveConfig.less';
+import Settings from './Settings';
 
 const LiveConfig = () => {
     return (
         <Fragment>
-            <Context />
+            <Settings />
         </Fragment>
     );
 }

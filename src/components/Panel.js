@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import "./Panel.css";
+import './Panel.less';
 import Context from './Context';
 
 const Panel = () => {

@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
-import "./Config.css";
-import Context from './Context';
+import './Config.less';
+import Settings from './Settings';
 
 const Config = () => {
     return (
         <Fragment>
-            <Context />
+            <Settings />
         </Fragment>
     );
 }
