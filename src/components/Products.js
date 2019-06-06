@@ -62,10 +62,7 @@ const Products = () => {
 
     return (
         <Fragment>
-            insert raid leader here
-            <div id="reveal">Join Raid</div>
-            <div id="options">{products.map(item => (<div id="raid" key={ item } onClick={() => buyRaid(item)}>{ item } bits</div>))}</div>
-            insert sound settings here
+            <div className="products">{products.map(item => (<div id="raid" key={ item } onClick={() => buyRaid(item)}>{ item } bits</div>))}</div>
         </Fragment>
     );
 }
