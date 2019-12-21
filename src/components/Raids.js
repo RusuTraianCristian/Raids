@@ -19,7 +19,7 @@ const Raids = () => {
     return (
         <Fragment>
             <div className="header">
-                Use Bits to enter the raid and support the community!
+                Use Bits to join the raid at the end of the stream!
             </div>
             <div className="wrapper">
                 <div className="topinfo">

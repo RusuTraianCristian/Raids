@@ -1,9 +1,10 @@
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/database';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCRJzhMb0owrJo_Vvfiw-NotuKJURMzPA8",
     authDomain: "raidsapi.firebaseapp.com",
-    databaseURL: "https://raidsapi.firebaseio.com",
+    databaseURL: "wss://raidsapi.firebaseio.com",
     projectId: "raidsapi",
     storageBucket: "raidsapi.appspot.com",
     messagingSenderId: "323513679490",

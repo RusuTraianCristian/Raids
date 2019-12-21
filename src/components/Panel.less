@@ -1,6 +1,7 @@
 /* less variables */
 @purple: #9686d5;
 @darkpurple: #7866be;
+@newpurple: #7f4edb;
 @twitch: #19171c;
 @green: #43cc92;
 @red: #bb2443;
@@ -13,6 +14,7 @@ body {
     color: @purple;
     font-family: Arial;
     font-size: 14px;
+    overflow: hidden;
 }
 
 .header {
@@ -21,7 +23,6 @@ body {
     margin-bottom: 0;
     padding: 10px;
     line-height: 18px;
-    background: @darkpurple;
     border-radius: 4px;
     font-size: 14px;
     font-weight: bold;
@@ -30,6 +31,14 @@ body {
     text-align: center;
     letter-spacing: 0.4px;
     user-select: none;
+    background: @newpurple;
+    background: -moz-linear-gradient(-45deg,  @newpurple 0%, @darkpurple 50%, @darkpurple 63%, @purple 100%);
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,@newpurple), color-stop(50%,@darkpurple), color-stop(63%,@darkpurple), color-stop(100%,@purple));
+    background: -webkit-linear-gradient(-45deg,  @newpurple 0%,@darkpurple 50%,@darkpurple 63%,@purple 100%);
+    background: -o-linear-gradient(-45deg,  @newpurple 0%,@darkpurple 50%,@darkpurple 63%,@purple 100%);
+    background: -ms-linear-gradient(-45deg,  @newpurple 0%,@darkpurple 50%,@darkpurple 63%,@purple 100%);
+    background: linear-gradient(135deg,  @newpurple 0%,@darkpurple 50%,@darkpurple 63%,@purple 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@newpurple', endColorstr='@purple',GradientType=1 );
 }
 
 .wrapper {
@@ -54,6 +63,7 @@ body {
     float: left;
     margin-top: -30px;
     color: @green;
+    font-weight: bold;
 }
 
 .right {
@@ -93,22 +103,7 @@ span {
     margin-left: -25px;
 }
 
-::-webkit-scrollbar {
-      height: 10px;
-	  width: 4px;
-	  background: transparent;
-      border-left: 2px solid transparent;
-    }
-::-webkit-scrollbar-thumb {
-    background: black;
-    border: 1px solid @darkpurple;
-    -webkit-border-radius: 1ex;
-    border-radius: 2px;
-}
-::-webkit-scrollbar-corner {
-}
-
-#raid {
+.raid {
     background: black;
     color: @darkpurple;
     -webkit-transition: all 0.3s ease-in-out;
@@ -116,11 +111,11 @@ span {
     -o-transition: all 0.3s ease-in-out;
     -ms-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-    width: calc(100% / 2 - 10px);
-    height: 39px;
-    margin: 5px;
+    width: calc(100% / 2 - 4px);
+    height: 36px;
+    margin: 2px;
     text-align: center;
-    line-height: 39px;
+    line-height: 36px;
     cursor: pointer;
     user-select: none;
     font-size: 13px;
@@ -130,10 +125,77 @@ span {
     border-radius: 4px;
 }
 
-#raid:hover {
+.raid:hover {
     color: @purple;
 }
 
+.container {
+    width: 100%;
+    height: 322px;
+}
+
+.leader {
+    width: calc(100% - 6px);
+    height: 38px;
+    margin: 0 2px 2px 2px;
+    background: black;
+    color: @darkpurple;
+    text-align: center;
+    line-height: 40px;
+    font-size: 14px;
+    font-weight: bold;
+    user-select: none;
+    border: 1px solid @darkpurple;
+    border-radius: 2px;
+    display: none;
+}
+
+.leader span {
+    color: @green;
+    font-weight: 100;
+    font-size: 12px;
+}
+
 .products {
-    
+    width: 100%;
+    height: 240px;
+}
+
+.footer {
+    width: 100%;
+    height: 40px;
+}
+
+.pagination {
+    width: 64px;
+    height: 36px;
+    float: right;
+    margin: 2px;
+    overflow: hidden;
+}
+
+.navButton {
+    width: 28px;
+    height: 28px;
+    margin: 4px 2px;
+    float: left;
+    outline-style: none;
+    border-style: none;
+    border-radius: 3px;
+    background: @newpurple;
+    color: black;
+    font-size: 20px;
+    line-height: 26px;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.navButton:hover {
+    background: black;
+    color: @newpurple;
 }

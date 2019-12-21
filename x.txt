@@ -1,0 +1,16 @@
+Retouch/Redesign for updated Twitch website (with Extensions bar) + marketing
+Feedback system and button
+Raid Leader on top of Raid
+Leaderboard
+Push chat message when settings are changed / raid is reset
+Show message on settings pages when changes were made but are unsaved, hide this message after saving, show new message when saving (with Timeout to hide)
+Confirm button on reset Raid
+Option to 'buyout' Raid; someone pays remaining bits or full price entirely to raid what target they want
+Sound alert triggered when Raid funding is complete
+attain /raid api endpoint
+New discovery Screenshots
+
+add a "free" version where people can use it and raid without using bits
+after installation, do a check to see if whomever installed the extension is partner or at least affiliate
+Spread the word on FB groups and wherever to get installs and ask for feedback
+add REWARDS such as loot boxes, maybe..?!
