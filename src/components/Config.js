@@ -1,13 +1,11 @@
 import React, { Fragment } from 'react';
 import './Config.less';
-import GuideOverlay from './GuideOverlay';
-import Settings from './Settings';
+import Checkpoint from './Checkpoint';
 
 const Config = () => {
     return (
         <Fragment>
-            <GuideOverlay />
-            <Settings />
+            <Checkpoint />
         </Fragment>
     );
 }

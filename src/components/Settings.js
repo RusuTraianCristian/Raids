@@ -27,9 +27,8 @@ const Settings = () => {
         const ref = firebase.database().ref('channels/').child(channelId);
         ref.set(0);
     }
-    const setValues = () => {
-        const postURL = 'https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/raids';
-        fetch(postURL, {
+    const setValues = async () => {
+        const header = {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -40,7 +39,9 @@ const Settings = () => {
                 required: required,
                 target: target
             })
-        });
+        }
+        const url = 'https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/raids';
+        const response = await fetch(url, header);
     }
 
     const changeRequired = (e) => {
@@ -57,21 +58,18 @@ const Settings = () => {
         getAuthorized();
         const channelId = auth.channelId;
         // AWS
-        const getURL = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/raids?Id=${channelId}&Task=${channelId}`;
-        const header = {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+        const getAWS = async () => {
+            const header = {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
             }
+            const url = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/raids?Id=${channelId}&Task=${channelId}`;
+            await fetch(url, header).then(async res => await res.json()).then(data => { currentInfo = data; getInfo() });
         }
-        fetch(getURL, header)
-        .then(res => res.json())
-        .then(data => {
-            currentInfo = data;
-            getInfo();
-        })
-        .catch(error => console.error(error));
+        getAWS();
     }, []);
 
     return (
@@ -79,16 +77,17 @@ const Settings = () => {
             <div className="section">
                 <form>
                     <label>
-                        <span className="labels">Set bits required to raid:</span>
+                        <span className="labels">Bits for raid:</span>
                         <input type="text" pattern="[0-9]*" placeholder={required} onChange={(e) => changeRequired(e.target.value)}/>
                     </label>
                     <label>
-                        <span className="labels">Set raid target channel:</span>
+                        <span className="labels">Raid this channel:</span>
                         <input type="text" placeholder={target} onChange={(e) => changeTarget(e.target.value)}/>
                     </label>
                 </form>
                 <button className="save" onClick={() => setValues()}>Save Settings</button>
                 <button className="reset" onClick={() => resetRaid()}>Reset Raid</button>
+                {target && required ? "settings done" : target ? "set required" : required ? "set target" : "set required and target"}
             </div>
         </Fragment>
     );
