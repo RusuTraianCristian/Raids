@@ -1,0 +1,89 @@
+/* less variables */
+@purple: #9686d5;
+@darkpurple: #7866be;
+@newpurple: #7f4edb;
+@twitch: #19171c;
+@green: #02ccb4;
+@blue: #5e92d7;
+@red: #bb2443;
+@glacier: #e7e7e7;
+/* end of less variables */
+
+*,
+*:after,
+*:before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.clearfix:before,
+.clearfix:after {
+	content: " ";
+	display: table;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+.username {
+  height: 40px;
+  float: right;
+  margin-left: auto;
+  margin-right: 10px;
+  line-height: 40px;
+  text-align: center;
+  color: @darkpurple;
+  user-select: none;
+}
+
+.tab_container {
+	width: 100%;
+	margin: 0 auto;
+	position: relative;
+}
+
+#tab1, #tab2, #tab3, #content1, #content2, #content3 {
+  clear: both;
+  display: none;
+}
+
+#lab1, #lab2, #lab3 {
+  font-weight: 100;
+  font-size: 16px;
+  display: block;
+  float: left;
+  padding: 0px 20px;
+  color: @glacier;
+  cursor: pointer;
+  text-transform: capitalize;
+  text-decoration: none;
+  text-align: center;
+  background: #000000;
+  user-select: none;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 10px;
+}
+
+#lab1:hover, #lab2:hover, #lab3:hover {
+  color: @purple;
+}
+
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2,
+#tab3:checked ~ #content3 {
+  display: block;
+  background: #000000;
+  color: #ffffff;
+  border-top: 1px solid #27262c;
+  padding-top: 40px;
+}
+
+.tab_container [id^="tab"]:checked + #lab1,
+.tab_container [id^="tab"]:checked + #lab2,
+.tab_container [id^="tab"]:checked + #lab3 {
+  color: @purple;
+  box-shadow: inset 0 -2px @purple;
+}

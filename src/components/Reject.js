@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
 import './Reject.less';
 
-const Reject = () => {
+const Reject = (props) => {
     return (
         <Fragment>
             <div className="reject">
-                Sorry, you are not a partner or an affiliate yet -- make sure your channel can receive bits before using <span>Raids</span> extension.
+                Sorry <span>{props.username}</span>, you are not a partner/affiliate. You'll need a bits enabled channel before using <span>Raids</span>.
+                Learn more at <span><a target="_blank" href="https://affiliate.twitch.tv/">Twitch Affiliates &#129109;</a></span>
             </div>
         </Fragment>
     );

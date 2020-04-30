@@ -4,76 +4,74 @@
   "backendFolderName": "",
   "certificateExceptions": [],
   "extensionViews": [],
-  "frontendCommand": "",
-  "frontendFolderName": "",
   "manifest": {
     "anchor": "panel",
     "assetUrls": [],
     "authorName": "Rusu Traian Cristian",
     "bitsEnabled": true,
     "canInstall": true,
-    "configUrl": "https://localhost:8080/config.html",
+    "configUrl": "https://ptm1pmj69bfuceli46nae7bfhi7q8n.ext-twitch.tv/ptm1pmj69bfuceli46nae7bfhi7q8n/1.0.0/385217a2be813bf0e18b8cd1b23214c2/config.html",
     "configurationLocation": "custom",
-    "description": "Allows streamers to receive bits from their audiences in exchange for raiding someone at the end of the stream session, if the bits goal is met.",
+    "description": "Raids (the extension) allows your viewers the use of Bits in order to join and support your next raid. Raid a channel at the end of your stream to support the community! A chat notification will be seen on the channel every time a user joins the raid.",
     "eulaTosUrl": "",
     "hasChatSupport": true,
-    "iconUrl": "https://extensions-discovery-images.twitch.tv/ptm1pmj69bfuceli46nae7bfhi7q8n/0.0.1/logoee9711ce-9f2f-445b-ae52-f680277b321e",
+    "iconUrl": "https://extensions-discovery-images.twitch.tv/ptm1pmj69bfuceli46nae7bfhi7q8n/1.0.0/logoaebe86f3-7545-4634-9262-10ababbd3b9a",
     "iconUrls": {
-      "100x100": "https://extensions-discovery-images.twitch.tv/ptm1pmj69bfuceli46nae7bfhi7q8n/0.0.1/logoee9711ce-9f2f-445b-ae52-f680277b321e",
+      "100x100": "https://extensions-discovery-images.twitch.tv/ptm1pmj69bfuceli46nae7bfhi7q8n/1.0.0/logoaebe86f3-7545-4634-9262-10ababbd3b9a",
       "24x24": "https://extensions-discovery-images.twitch.tv/ptm1pmj69bfuceli46nae7bfhi7q8n/0.0.1/taskbar71b799b2-d2bd-4b41-91fc-e09da2f8c2bd",
       "300x200": "https://extensions-discovery-images.twitch.tv/ptm1pmj69bfuceli46nae7bfhi7q8n/0.0.1/discovery846c8390-acd6-4140-8a00-c62f7c5d7ba4"
     },
     "id": "ptm1pmj69bfuceli46nae7bfhi7q8n",
     "installationCount": -42,
-    "liveConfigUrl": "https://localhost:8080/live_config.html",
+    "liveConfigUrl": "https://ptm1pmj69bfuceli46nae7bfhi7q8n.ext-twitch.tv/ptm1pmj69bfuceli46nae7bfhi7q8n/1.0.0/385217a2be813bf0e18b8cd1b23214c2/live_config.html",
     "name": "Raids",
-    "panelHeight": 500,
+    "panelHeight": 460,
     "privacyPolicyUrl": "",
     "requestIdentityLink": true,
     "requiredBroadcasterAbilities": [],
     "screenshotUrls": [
-      "https://extensions-discovery-images.twitch.tv/ptm1pmj69bfuceli46nae7bfhi7q8n/0.0.1/screenshote83ae22f-5a84-4757-a048-022a17c4f4a2"
+      "https://extensions-discovery-images.twitch.tv/ptm1pmj69bfuceli46nae7bfhi7q8n/1.0.0/screenshotece07f5f-a551-47bd-a5fb-259fc3222095"
     ],
     "sku": "",
-    "state": "Testing",
+    "state": "Assets Uploaded",
     "subscriptionsSupportLevel": "none",
-    "summary": "Streamers can raid Twitch channels if the bits goal is met. Viewers can give bits to make a raid happen!",
+    "summary": "Allow your viewers to exchange Bits to enter a raid group. You raid someone's channel when the Bits required target is met.",
     "supportEmail": "rusutraiancristian@gmail.com",
     "vendorCode": "",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "viewerSummary": "Streamers can raid Twitch channels if the bits goal is met. Viewers can give bits to make a raid happen!",
-    "viewerUrl": "https://localhost:8080/panel.html",
+    "viewerUrl": "https://ptm1pmj69bfuceli46nae7bfhi7q8n.ext-twitch.tv/ptm1pmj69bfuceli46nae7bfhi7q8n/1.0.0/385217a2be813bf0e18b8cd1b23214c2/panel.html",
     "viewerUrls": {
-      "component": "https://localhost:8080/video_component.html",
-      "panel": "https://localhost:8080/panel.html"
+      "panel": "https://ptm1pmj69bfuceli46nae7bfhi7q8n.ext-twitch.tv/ptm1pmj69bfuceli46nae7bfhi7q8n/1.0.0/385217a2be813bf0e18b8cd1b23214c2/panel.html",
+      "component": "https://ptm1pmj69bfuceli46nae7bfhi7q8n.ext-twitch.tv/ptm1pmj69bfuceli46nae7bfhi7q8n/1.0.0/385217a2be813bf0e18b8cd1b23214c2/video_component.html"
     },
     "views": {
+      "panel": {
+        "viewerUrl": "https://ptm1pmj69bfuceli46nae7bfhi7q8n.ext-twitch.tv/ptm1pmj69bfuceli46nae7bfhi7q8n/1.0.0/385217a2be813bf0e18b8cd1b23214c2/panel.html",
+        "height": 460,
+        "canLinkExternalContent": true
+      },
       "component": {
-        "aspectHeight": 4800,
-        "aspectRatioX": 100,
-        "aspectRatioY": 200,
-        "aspectWidth": 2500,
+        "viewerUrl": "https://ptm1pmj69bfuceli46nae7bfhi7q8n.ext-twitch.tv/ptm1pmj69bfuceli46nae7bfhi7q8n/1.0.0/385217a2be813bf0e18b8cd1b23214c2/video_component.html",
+        "aspectWidth": 0,
+        "aspectHeight": 0,
+        "aspectRatioX": 40000,
+        "aspectRatioY": 43200,
         "autoscale": false,
-        "canLinkExternalContent": false,
         "scalePixels": 0,
+        "targetHeight": 6400,
         "size": 0,
-        "targetHeight": 10000,
-        "viewerUrl": "https://localhost:8080/video_component.html",
         "zoom": false,
-        "zoomPixels": 0
+        "zoomPixels": 0,
+        "canLinkExternalContent": false
       },
       "config": {
-        "canLinkExternalContent": true,
-        "viewerUrl": "https://localhost:8080/config.html"
+        "viewerUrl": "https://ptm1pmj69bfuceli46nae7bfhi7q8n.ext-twitch.tv/ptm1pmj69bfuceli46nae7bfhi7q8n/1.0.0/385217a2be813bf0e18b8cd1b23214c2/config.html",
+        "canLinkExternalContent": true
       },
       "liveConfig": {
-        "canLinkExternalContent": true,
-        "viewerUrl": "https://localhost:8080/live_config.html"
-      },
-      "panel": {
-        "canLinkExternalContent": true,
-        "height": 500,
-        "viewerUrl": "https://localhost:8080/panel.html"
+        "viewerUrl": "https://ptm1pmj69bfuceli46nae7bfhi7q8n.ext-twitch.tv/ptm1pmj69bfuceli46nae7bfhi7q8n/1.0.0/385217a2be813bf0e18b8cd1b23214c2/live_config.html",
+        "canLinkExternalContent": true
       }
     },
     "whitelistedConfigUrls": [
@@ -83,6 +81,8 @@
       "https://raids.app/"
     ]
   },
+  "frontendCommand": "",
+  "frontendFolderName": "",
   "name": "Raids",
   "version": 1
 }

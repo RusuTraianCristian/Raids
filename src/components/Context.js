@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useRef, useEffect } from 'react';
-import { onAuthorized } from '../Twitch';
+import { getAuth } from '../Twitch';
 import firebase from '../firebase';
 import Raids from './Raids';
 import Products from './Products';
@@ -34,7 +34,7 @@ const Context = () => {
 
     useEffect(() => {
         // Twitch
-        const auth = onAuthorized;
+        const auth = getAuth();
         currentAuth = auth;
         getAuthorized();
         const channelId = auth.channelId;
@@ -44,22 +44,22 @@ const Context = () => {
             currentBits = JSON.stringify(snapshot.val(), null, 2);
             getBits();
         });
-        // AWS
-        const getURL = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/raids?Id=${channelId}&Task=${channelId}`;
-        const header = {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+        const getAWS = async () => {
+            // AWS
+            const getURL = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/raids?Id=${channelId}&Task=${channelId}`;
+            const header = {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
             }
-        }
-        fetch(getURL, header)
-        .then(res => res.json())
-        .then(data => {
+            const res = await fetch(getURL, header);
+            const data = await res.json();
             currentInfo = data;
             getInfo();
-        })
-        .catch(error => console.error(error));
+        }
+        getAWS();
     }, []);
 
     return (

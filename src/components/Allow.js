@@ -2,11 +2,11 @@ import React, { Fragment } from 'react';
 import './Allow.less';
 import Settings from './Settings';
 
-const Allow = () => {
+const Allow = (props) => {
     return (
         <Fragment>
             <div className="allow">
-                <Settings />
+                <Settings username={props.username}/>
             </div>
         </Fragment>
     );
