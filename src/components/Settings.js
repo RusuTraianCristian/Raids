@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useRef, useEffect } from 'react';
-import { getAuth } from '../Twitch';
 import firebase from '../firebase';
 import './Sections.less';
 import Themes from './Themes';
@@ -14,10 +13,6 @@ const Settings = props => {
     const [theColor, setTheColor] = useState({});
     const [tab, setTab] = useState('tab1');
     const [bits, setBits] = useState(0);
-
-
-    const { token, clientId, channelId, userId } = authorized;
-    const { required, target } = info;
 
     const ath = useRef(0);
     const inf = useRef(0);
@@ -70,6 +65,10 @@ const Settings = props => {
         setInfo({...info, target: e});
     }
 
+    const getBits = theAmount => {
+        setBits(theAmount);
+    }
+
     const focusTheNext = event => {
         if (event.key === "Enter") {
             focusNext.current.focus();
@@ -83,33 +82,34 @@ const Settings = props => {
         }
     }
 
+    const { userId, channelId, clientId, token } = authorized;
+    const { required, target } = info;
+
     useEffect(() => {
-        // Twitch
-        const auth = getAuth();
-        currentAuth = auth;
-        getAuthorized();
-        const channelId = auth.channelId;
-        // AWS
-        const getAWS = async () => {
-            const header = {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+        window.Twitch.ext.onAuthorized(auth => {
+            currentAuth = auth;
+            getAuthorized();
+            const { userId, channelId, clientId, token } = auth;
+            const getAWS = async () => {
+                const header = {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
                 }
+                const url = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/raids?Id=${channelId}&Task=${channelId}`;
+                const res = await fetch(url, header);
+                const data = await res.json();
+                currentInfo = data;
+                getInfo();
             }
-            const url = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/raids?Id=${channelId}&Task=${channelId}`;
-            const res = await fetch(url, header);
-            const data = await res.json();
-            currentInfo = data;
-            getInfo();
-        }
-        getAWS();
-        // Firebase
-        const ref = firebase.database().ref('channels/').child(channelId);
-        ref.on("value", (snapshot) => {
-            let currentBits = JSON.stringify(snapshot.val(), null, 2);
-            getBits(currentBits);
+            getAWS();
+            const ref = firebase.database().ref('channels/').child(channelId);
+            ref.on("value", (snapshot) => {
+                let currentBits = JSON.stringify(snapshot.val(), null, 2);
+                getBits(currentBits);
+            });
         });
     }, []);
 
@@ -133,8 +133,14 @@ const Settings = props => {
         }
     }, [target, required]);
 
-    const getBits = (theAmount) => {
-        setBits(theAmount);
+    const percentage = Math.floor(bits / required * 100) + "%";
+    const styles = {
+        childbar: {
+            width: percentage,
+            height: '24px',
+            maxWidth: '100%',
+            transition: 'width 1.5s ease-out'
+        }
     }
 
     return (
@@ -144,13 +150,25 @@ const Settings = props => {
                 <label id="lab1" for="tab1"><span>Live</span></label>
                 <input id="tab2" type="radio" name="tabs" value="tab2" onChange={e => setTab(e.target.value)} checked={tab === "tab2"} />
                 <label id="lab2" for="tab2"><span>Settings</span></label>
-                <input id="tab3" type="radio" name="tabs" value="tab3" onChange={e => setTab(e.target.value)} checked={tab === "tab3"} />
-                <label id="lab3" for="tab3"><span>Theme/Color</span></label>
-
+                {
+                // <input id="tab3" type="radio" name="tabs" value="tab3" onChange={e => setTab(e.target.value)} checked={tab === "tab3"} />
+                // <label id="lab3" for="tab3"><span>Theme/Color</span></label>
+                }
                 <div className="username">{ props.username }</div>
 
                 <section id="content1" className="tab-content">
-                    <div>currently raised { bits } bits out of { required }</div>
+                    <div className="bgbar">
+                        <div className="childbar shine" style={ styles.childbar }></div>
+                    </div>
+                    <div className="second">
+                        <div className="bits">{ bits }</div>
+                        <div className="required">{ required }</div>
+                        <div className="percentage">{ percentage }</div>
+                    </div>
+                    <div className="header">
+                        <div className="incentive">next raid</div>
+                        <div className="target">{ target }</div>
+                    </div>
                     <div className="buttons">
                         <button className="reset" onClick={() => resetRaid()}>reset</button>
                     </div>
@@ -170,10 +188,11 @@ const Settings = props => {
                     <button className="save" style={ custom } disabled={ theState } ref={ focusSave } onClick={() => setValues()}>save</button>
                     <div className="infoarea" style={ theColor }>{ infoArea }</div>
                 </section>
-
-                <section id="content3" className="tab-content">
-                    <Themes />
-                </section>
+                {
+                // <section id="content3" className="tab-content">
+                //     <Themes />
+                // </section>
+                }
             </div>
         </Fragment>
     );

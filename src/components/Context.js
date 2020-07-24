@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useRef, useEffect } from 'react';
-import { getAuth } from '../Twitch';
 import firebase from '../firebase';
 import Raids from './Raids';
 import Products from './Products';
@@ -33,33 +32,31 @@ const Context = () => {
     }
 
     useEffect(() => {
-        // Twitch
-        const auth = getAuth();
-        currentAuth = auth;
-        getAuthorized();
-        const channelId = auth.channelId;
-        // Firebase
-        const ref = firebase.database().ref('channels/').child(channelId);
-        ref.on("value", (snapshot) => {
-            currentBits = JSON.stringify(snapshot.val(), null, 2);
-            getBits();
-        });
-        const getAWS = async () => {
-            // AWS
-            const getURL = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/raids?Id=${channelId}&Task=${channelId}`;
-            const header = {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+        window.Twitch.ext.onAuthorized(auth => {
+            currentAuth = auth;
+            getAuthorized();
+            const { token, clientId, channelId, userId } = auth;
+            const ref = firebase.database().ref('channels/').child(channelId);
+            ref.on("value", (snapshot) => {
+                currentBits = JSON.stringify(snapshot.val(), null, 2);
+                getBits();
+            });
+            const getAWS = async () => {
+                const url = `https://fng6b6xn2c.execute-api.us-east-1.amazonaws.com/firstStage/raids?Id=${channelId}&Task=${channelId}`;
+                const options = {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
                 }
+                const res = await fetch(url, options);
+                const data = await res.json();
+                currentInfo = data;
+                getInfo();
             }
-            const res = await fetch(getURL, header);
-            const data = await res.json();
-            currentInfo = data;
-            getInfo();
-        }
-        getAWS();
+            getAWS();
+        });
     }, []);
 
     return (

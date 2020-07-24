@@ -1,12 +1,13 @@
 import React, { Fragment, useState, useRef, useEffect } from 'react';
 import './Checkpoint.less';
-import { getAuth } from '../Twitch';
 import Allow from './Allow';
 import Reject from './Reject';
 
 const Checkpoint = () => {
+
     const [authorized, setAuthorized] = useState({});
     const [blob, setBlob] = useState({});
+
     const ath = useRef(0);
     const blb = useRef(0);
 
@@ -20,40 +21,37 @@ const Checkpoint = () => {
         setBlob({...currentBlob});
     }
 
-    const { broadcaster_type, display_name } = blob;
     const { userId, channelId, clientId, token } = authorized;
+    const { broadcaster_type, display_name } = blob;
 
     useEffect(() => {
-        // Twitch
-        const auth = getAuth();
-        currentAuth = auth;
-        getAuthorized();
-        const channelId = auth.channelId;
-        const clientId = auth.clientId;
-        const token = auth.token;
-        // check whether the current user is partner or affiliate
-        const getInfo = async () => {
-            const header = {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + token,
-                    'Client-ID': clientId
+        window.Twitch.ext.onAuthorized(auth => {
+            currentAuth = auth;
+            getAuthorized();
+            const { userId, channelId, clientId, token } = auth;
+            const getInfo = async () => {
+                const options = {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token,
+                        'Client-ID': clientId
+                    }
                 }
+                const url = `https://api.twitch.tv/helix/users?id=${channelId}`;
+                const res = await fetch(url, options);
+                const data = await res.json();
+                currentBlob = data.data[0];
+                getBlob();
             }
-            const url = `https://api.twitch.tv/helix/users?id=${channelId}`;
-            const res = await fetch(url, header);
-            const data = await res.json();
-            currentBlob = data.data[0];
-            getBlob();
-        }
-        getInfo();
+            getInfo();
+        });
     }, []);
 
     return (
         <Fragment>
-            { broadcaster_type ? <Reject username={display_name}/> : <Allow username={display_name}/> }
+            { broadcaster_type ? <Allow username={display_name}/> : <Reject username={display_name}/> }
         </Fragment>
     );
 }

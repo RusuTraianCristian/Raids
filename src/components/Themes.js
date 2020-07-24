@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { getContext } from '../Twitch';
 
 const Themes = () => {
 
@@ -22,7 +21,7 @@ const Themes = () => {
     }, []);
 
     useEffect(() => {
-        const context = getContext();
+        // const context = getContext(); // non-existent
         setContext(context);
     }, []);
 
